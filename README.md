@@ -1,2 +1,2 @@
 # Load
-Full Stack Web App
+Full stack web app for tracking freight shipments.
