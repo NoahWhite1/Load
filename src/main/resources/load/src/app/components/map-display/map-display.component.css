@@ -1,0 +1,24 @@
+@import "@tomtom-international/web-sdk-maps";
+
+
+/* .displayContainer{
+    background-color: #361134;
+    width: 100%;
+    min-height: 1000px;
+}
+
+#map {
+    height: 60vh;
+    width: 60vw;
+    margin-top: 2.5%;
+    margin-left: 450px;
+} */
+
+agm-map {
+    display: block;
+    position: relative;
+    height: 1200px;
+    width: 1200px;
+    margin-left: 400px;
+    z-index: 10000;
+  }

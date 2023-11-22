@@ -1,0 +1,26 @@
+<button mat-button [matMenuTriggerFor]="sortbymenu">{{searchByText}}</button>
+<mat-menu #sortbymenu="matMenu"  class = "searchByText">
+  <button mat-menu-item (click) = "searchForAnything()" class = "searchByText">Sort By: Anything</button>
+  <button mat-menu-item (click) = "searchByIds()" class = "searchByText">Sort By: ID</button>
+  <button mat-menu-item (click) = "searchForRates()" class = "searchByText">Sort By: Rate</button>
+  <button mat-menu-item (click) = "searchForStartAddresses()" class = "searchByText">Sort By: Start Address</button>
+  <button mat-menu-item (click) = "searchForEndAddresses()" class = "searchByText">Sort By: End Address</button>
+  <button mat-menu-item (click) = "searchByStates()" class = "searchByText">Sort By: State</button>
+  <button mat-menu-item (click) = "searchByGasCost()" class = "searchByText">Sort By: Gas Cost</button>
+  <button mat-menu-item (click) = "searchByDriverPay()" class = "searchByText">Sort By: Driver Pay</button>
+  <button mat-menu-item (click) = "searchByLoadCost()" class = "searchByText">Sort By: Load Cost</button>
+  <button mat-menu-item (click) = "searchByInsuranceCost()" class = "searchByText">Sort By: Insurance Cost</button>
+  <button mat-menu-item (click) = "searchByMaintenanceCost()" class = "searchByText">Sort By: Maintenance Cost</button>
+
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="sortfrommenu">{{lowToHighText}}</button>
+<mat-menu #sortfrommenu="matMenu">
+  <button mat-menu-item (click) = "sortFromLowToHigh()">Sort From: Low to High</button>
+  <button mat-menu-item (click) = "sortFromHighToLow()">Sort From: High to Low</button>
+</mat-menu>
+    <mat-form-field class="matFieldSearch">
+      <mat-label class = "matFieldSearch">Search</mat-label>
+      <input matInput class = "search-placeholder" [(ngModel)] = "searchBar" type="text" value = "" placeholder="$50000, 123 Test Ave, John Adams">
+      <mat-icon matSuffix class = "search_icon" (click) = "searching()">search</mat-icon>
+    </mat-form-field>

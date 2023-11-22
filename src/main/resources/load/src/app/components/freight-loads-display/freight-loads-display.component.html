@@ -1,0 +1,35 @@
+<app-banner></app-banner>
+<app-nav-bar></app-nav-bar>
+<app-load-calculator-page (refreshTable) = "ngOnInit()"></app-load-calculator-page>
+<app-search-bar class = "searchBar" (searchFor) = "ngOnInit()" z-index = "10"></app-search-bar>
+<div class = "freightTable">
+    <div class = "freightSorter">
+        <mat-tab-group  mat-align-tabs="center" dynamicHeight>
+            <mat-tab label="All" class = "freightTabs" color = "#FF0000">
+                <div class = "freightSorting">
+                <app-freight-load-table *ngFor = "let f of freightLoads" [freightLoad] = "f"></app-freight-load-table>
+            </div>
+            </mat-tab>
+            <mat-tab label="Posted" class = "freightTabs" color = "blue">
+                <div class = "freightSorting">
+                    <app-freight-load-table *ngFor = "let f of freightPosted" [freightLoad] = "f"></app-freight-load-table>
+                </div>
+            </mat-tab>
+            <mat-tab label="In Progress" class = "freightTabs" color = "yellow">
+                <div class = "freightSorting">
+                    <app-freight-load-table *ngFor = "let f of freightInProgress" [freightLoad] = "f"></app-freight-load-table>
+                </div>
+            </mat-tab>
+            <mat-tab label="Completed" class = "freightTabs" color = "green">
+                <div class = "freightSorting">
+                    <app-freight-load-table *ngFor = "let f of freightDelivered" [freightLoad] = "f"></app-freight-load-table>
+                </div>
+            </mat-tab>
+            <mat-tab label="Not Completed" class = "freightTabs" color = "red">
+                <div class = "freightSorting">
+                    <app-freight-load-table *ngFor = "let f of freightFailed" [freightLoad] = "f"></app-freight-load-table>
+                </div>
+            </mat-tab>
+          </mat-tab-group>
+    </div>
+</div>

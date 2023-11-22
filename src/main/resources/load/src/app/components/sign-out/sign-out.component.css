@@ -1,0 +1,49 @@
+.signoutContainer{
+    background-color: white;
+    width: 400px;
+    height: 400px;
+    margin-top: 250px;
+    margin-left: 750px;
+    border-radius: 5%;
+    border-style: solid;
+    border-color: #1a7dbe;
+    background-color: #0F4C75;
+}
+
+.yesButton{
+    color: white;
+    background-color: darkgreen;
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+.noButton{
+    color: white;
+    background-color: darkred;
+    width: 100px;
+    height: 100px;
+    margin-left: 75px;
+}
+
+.signoutText{
+    display: block;
+    position: relative;
+    font-size: xx-large;
+    font-weight: bold;
+    margin-left: 150px;
+    margin-top: 60px;
+    color: white;
+}
+
+.signoutDisplay{
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.39);
+    display:block;
+    width: 100%;
+    height: 100%;
+    z-index: 22000;
+}

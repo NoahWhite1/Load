@@ -1,0 +1,12 @@
+.navbar-background{
+    width: 101%;
+    height: 30px;
+    background-image: linear-gradient(0deg,#207b8b,black);
+
+    position: static;
+    align-self: center;
+    border-width: 10px;
+    margin-left: -7px;
+    border-right: 0px;
+    max-width: 100.35%;
+}

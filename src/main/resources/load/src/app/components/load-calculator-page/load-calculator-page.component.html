@@ -1,0 +1,58 @@
+<div class = "calculator_container"> 
+    <div class = "calculator_content">
+    <span class = "load_calculator_title" *ngIf = "isCreating">Add Load</span>
+    <span class = "load_calculator_title" *ngIf = "!isCreating">Update Load</span>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label class = "input_text" >Rate</mat-label>
+        <input matInput class = "input_text" type = "number" [(ngModel)] = "rate" required>
+    </mat-form-field>
+    
+        <mat-form-field appearance="fill" class = "input_text">
+            <mat-label class = "input_text">Start Point Address</mat-label>
+            <input matInput class = "input_text" [(ngModel)] = "address1" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class = "input_text">
+            <mat-label class = "input_text">State</mat-label>
+            <input matInput class = "input_text" [(ngModel)] = "state1" required>
+        </mat-form-field>
+
+            <mat-form-field appearance="fill" class = "input_text">
+                <mat-label class = "input_text">End Point Address</mat-label>
+                <input matInput class = "input_text" [(ngModel)] = "address2" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class = "input_text">
+                <mat-label class = "input_text">State</mat-label>
+                <input matInput class = "input_text" [(ngModel)] = "state2" required>
+            </mat-form-field>
+
+            <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label class = "input_text">Gas Cost</mat-label>
+                        <input matInput class = "input_text" type = "number" [(ngModel)] = "gas_cost" required>
+                    </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label class = "input_text">Truck Driver Pay</mat-label>
+                            <input matInput class = "input_text" type = "number" [(ngModel)] = "truck_driver_pay" required>
+                        </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label class = "input_text">Load Cost</mat-label>
+                                <input matInput class = "input_text" type = "number" [(ngModel)] = "load_cost" required>
+                            </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label class = "input_text">Insurance Cost</mat-label>
+                                    <input matInput class = "input_text" type = "number" [(ngModel)] = "insurance_cost" required>
+                                </mat-form-field>
+                                
+                                    <mat-form-field appearance="fill">
+                                        <mat-label class = "input_text">Maintenance Cost</mat-label>
+                                        <input matInput class = "input_text" type = "number" [(ngModel)] = "maintenance_cost" required>
+                                    </mat-form-field>
+                                    
+                                    <button mat-flat-button color="green" (click) = "updateMapRoute()" class = "addFreightButton"><mat-icon class = "addIcon">add_task</mat-icon></button>
+
+    </div>
+</div>
