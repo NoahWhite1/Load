@@ -1,0 +1,49 @@
+.freightTabs{
+width: 100%;
+min-width: 100%;
+max-width: 100%;
+height: 100%;
+min-height: 100%;
+color: white;
+display: block;
+z-index: 1;
+}
+
+::ng-deep.mat-tab-label{
+    color: white;
+    font-size: large;
+}
+
+ ::ng-deep.mat-tab-body-content{
+    display: block;
+    height: 100%;
+    min-height: 100%;
+    margin-bottom: 30px;
+    z-index: 3;
+    position: relative;
+} 
+
+.freightSorting{
+    display: block;
+    min-height: max-content;
+}
+
+.freightSorter{
+    z-index: 10000;
+    position: relative;
+    display: block;
+}
+
+.searchBar{
+    position: relative;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: 5.5%;
+    left: 0;
+    background-image: linear-gradient(180deg,#28A4B9,black);
+    color: white;
+    display: block;
+    align-content: center;
+    align-items: center;
+}

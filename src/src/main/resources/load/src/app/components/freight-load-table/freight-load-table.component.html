@@ -1,0 +1,15 @@
+<mat-card class = "freightDisplay" (click) = "selectFreight()" [ngStyle]="{'background-image': freightColor}">
+
+    <mat-card-title class = "freightName">{{freightLoad.startAddress}} to {{freightLoad.endAddress}}</mat-card-title>
+    <mat-card-subtitle class = "freightBrokerName">freight broker: {{freightLoad.freightBroker.firstName}} {{freightLoad.freightBroker.lastName}}</mat-card-subtitle>
+    <div class = "freightContainer">
+        <span class="freightContent"><b class = "boldTitles">ID:</b> {{freightLoad.f_id}}</span>
+        <span class="freightContent"><b class = "boldTitles">Rate:</b> {{freightLoad.rate | money}}</span>
+        <span class = "freightContent"><b class = "boldTitles">Gas Cost:</b> {{freightLoad.gasCost | money}}</span>
+        <span class = "freightContent"><b class = "boldTitles">Driver Pay:</b> {{freightLoad.driverPay | money}}</span>
+        <span class = "freightContent"><b class = "boldTitles">Load Cost:</b> {{freightLoad.loadCost | money}}</span>
+        <span class = "freightContent"><b class = "boldTitles">Insurance Cost:</b> {{freightLoad.insuranceCost | money}}</span>
+        <span class = "freightContent"><b class = "boldTitles">Maintenance Cost:</b> {{freightLoad.maintenanceCost | money}}</span>
+    </div>
+
+</mat-card>

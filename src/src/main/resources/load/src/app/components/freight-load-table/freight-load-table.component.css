@@ -1,0 +1,35 @@
+.freightDisplay{
+    height: 10%;
+    min-height: 10%;
+    width: 95%;
+    /* background-image: linear-gradient( #2eaec5, black); */
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.freightDisplay:hover{
+    box-shadow: 5px 5px white;
+}
+
+.freightName{
+    color: white;
+}
+
+.freightContainer{
+    margin-top: -10px;
+    font-size: 18px;
+    color: white;
+}
+
+.freightContent{
+    margin-left: 10px;
+}
+
+.freightBrokerName{
+    color: white;
+}
+
+.boldTitles{
+    font: bold;
+}
