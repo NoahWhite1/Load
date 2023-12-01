@@ -1,40 +1,38 @@
-<div class = "banner-background">
-  <div class="sidenav-sidenav-content" *ngIf = "!isTrucker">
-    
-    <button mat-icon-button (click)="sidenav.toggle()" class = "sidnav-button" *ngIf = "isLoggedIn">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-sidenav-container class="side-container">
-      <mat-sidenav #sidenav mode="side" opened class="side-sidenav"
-                   [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
-                   [fixedBottomGap]="options.value.bottom"
-                   [opened] = "false">
-
-        <br>
-        <span class = "menu-name">Menu</span>
-        <br>
-        <br>
-        <mat-divider class="menu-divider"></mat-divider>
-
-        <button mat-button class = "side-menu-buttons" (click) = "homePage()">Home</button>
-        <br>
-        <button mat-button class = "side-menu-buttons"(click) = "loadCalculator()">My Loads</button>
-        <br>
-        <button mat-button class = "side-menu-buttons">3</button>
-      
-      </mat-sidenav>
-      
-    </mat-sidenav-container>
+<div class="banner-background">
+  <div class="banner-content">
+    <div class="left-nav-side">
+      <div class="main-menu-button-container">
+        <button mat-icon-button (click)="sidenav.toggle()" class="main-menu-button mat-banner-icon">
+          <mat-icon class="mat-banner-icon">menu</mat-icon>
+        </button>
+      </div>
+      <div class="sidenav-content-container">
+        <mat-sidenav-container class="side-layout">
+          <mat-sidenav #sidenav mode="side" opened class="sidenav-slider" [fixedInViewport]="options.value.fixed"
+            [fixedTopGap]="options.value.top" [fixedBottomGap]="options.value.bottom" [opened]="false">
+            <div class="menu-title"><b>Menu</b></div>
+            <mat-divider class="menu-divider"></mat-divider>
+            <div class="side-menu-options">
+              <button mat-button class="side-menu-buttons" (click)="homePage()">Home</button>
+              <button mat-button class="side-menu-buttons" (click)="loadCalculator()">My Loads</button>
+              <button mat-button class="side-menu-buttons"[disabled]=true>Coming Soon...</button>
+              <mat-divider class="menu-divider"></mat-divider>
+            </div>
+          </mat-sidenav>
+        </mat-sidenav-container>
+      </div>
+      <div class="site-title" (click)="homePage()">Load</div>
+    </div>
+    <div class="right-nav-side">
+      <div class="login-content">
+        <button mat-icon-button class="login-button">
+          <mat-icon class="mat-banner-icon" *ngIf="!isLoggedIn" (click)="loginDisplay()">login</mat-icon>
+          <mat-icon class="mat-banner-icon" *ngIf="isLoggedIn" (click)="signoutDisplay()">person</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
-
-
-    <span class = "program-name" (click) = "homePage()">Load</span>
-    <span class="spacer"></span>
-    <button mat-icon-button class="login-button">
-      <mat-icon *ngIf = "!isLoggedIn" (click)  = "loginDisplay()">login</mat-icon>
-      <mat-icon *ngIf = "isLoggedIn" (click) = "signoutDisplay()">person</mat-icon>
-    </button>
 </div>
 
-<app-login-display (toggleLoginIcon) = "toggleIsLoggedIn()"></app-login-display>
-<app-sign-out class = "signoutDisplay" (toggleSignoutIcon) = "signoutDisplay()"></app-sign-out>
+<app-login-display (toggleLoginIcon)="toggleIsLoggedIn()"></app-login-display>
+<app-sign-out class="signoutDisplay" (toggleSignoutIcon)="signoutDisplay()"></app-sign-out>

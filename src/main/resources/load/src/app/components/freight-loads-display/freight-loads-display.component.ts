@@ -29,13 +29,9 @@ export class FreightLoadsDisplayComponent implements OnInit {
   ngOnInit() {
 
     this.getPersonSignedIn();
-    this.findUserLoads();
-
-    if(this.personSignedIn.pId != null || undefined){
-      for(let freight of this.freightLoads){
-      
-      }
-      this.cdr.detectChanges();
+    if(this.personSignedIn != null || undefined){
+      console.log("Finding loads now");
+      this.findUserLoads();
     }
   }
 
@@ -48,9 +44,7 @@ export class FreightLoadsDisplayComponent implements OnInit {
     let allFreight:Array<FreightLoad> = await this.freightServ.getAllFreightLoads();
 
     for(let f of allFreight){
-      if(f.freightBroker.pId === this.personSignedIn.pId)
       this.freightLoads.push(f);
-
       switch(f.status){
         case 0:
           this.freightPosted.push(f);

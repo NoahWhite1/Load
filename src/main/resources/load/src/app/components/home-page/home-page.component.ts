@@ -5,63 +5,49 @@ import { FreightLoadService } from 'src/app/services/freight-load-service/freigh
 import { PeopleService } from 'src/app/services/people-service/people.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { Person } from 'src/app/modules/person/person.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements AfterViewInit {
+export class HomePageComponent implements OnInit {
 
-  freightLoads:Array<FreightLoad> = [];
+  freightLoads:FreightLoad[] = [];
   freightPosted:Array<FreightLoad> = [];
   freightInProgress:Array<FreightLoad> = [];
   freightDelivered:Array<FreightLoad> = [];
   freightFailed:Array<FreightLoad> = [];
   FrieghtLoad:FreightLoad = new FreightLoad(0, 0, "", "", 0, 0, 0, 0, 0, 0, null);
-  isBroker:boolean = false;
-  isTrucker:boolean = false;
   isSignedIn:boolean = false;
   @ViewChild(SearchBarComponent)
   searchBar:SearchBarComponent;
   searchByText:string = "";
   isLowToHigh:boolean = false;
   personSignedIn:Person = new Person(0, " ", " ", " ", " ", 0, " ", [], " ");
-  constructor(private freightServ:FreightLoadService, private peopleServ:PeopleService, private cdr:ChangeDetectorRef) { }
+  constructor(private freightServ:FreightLoadService, private peopleServ:PeopleService, private route:Router) { }
 
-  async ngAfterViewInit(){
+  async ngOnInit(){
 
-    this.getPersonSignedIn();
-    if(this.personSignedIn.pId != 0 && !undefined && !null){
-      this.isSignedIn = true;
+    this.personSignedIn = await this.getPersonSignedIn();
+    if(this.personSignedIn != undefined && this.personSignedIn != null){
+      this.freightLoads = await this.getAllFreight();
+      console.log("Freight: " + this.freightLoads);
     }
     else{
-      this.isSignedIn = false;
-    }
-
-    if(this.peopleServ.person === null){
-      return;
-    }
-
-    await this.getAllFreight();
-
-    
-    if(this.peopleServ.person.aLevel === 0){
-      this.isTrucker = true;
-    }
-    else if(this.peopleServ.person.aLevel > 0){
-      this.isBroker = true;
+      
     }
   }
 
-  async getPersonSignedIn(){
-    this.personSignedIn = await this.peopleServ.findPersonById(parseInt(sessionStorage.getItem("pId")));
+  async getPersonSignedIn():Promise<Person>{
+    return this.personSignedIn = await this.peopleServ.findPersonById(parseInt(sessionStorage.getItem("pId")));
   }
 
-  async getAllFreight():Promise<void>{
+  async getAllFreight():Promise<Array<FreightLoad>>{
     this.freightLoads = await this.freightServ.getAllFreightLoads();
 
-    let tempFreights:Array<any> = [];
+    let tempFreights:Array<FreightLoad> = [];
     this.freightPosted = [];
     this.freightInProgress = [];
     this.freightDelivered = [];
@@ -101,7 +87,6 @@ export class HomePageComponent implements AfterViewInit {
             break;
         }
       }
-      this.cdr.detectChanges();
     }
   }
 
@@ -134,7 +119,7 @@ export class HomePageComponent implements AfterViewInit {
   }
 
   async SortLoadsBy(){
-    let freightList:Array<any> = this.freightLoads;
+    let freightList:Array<FreightLoad> = this.freightLoads;
 
     switch(this.searchBar.searchNumber){
       

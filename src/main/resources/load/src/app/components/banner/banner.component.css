@@ -1,84 +1,193 @@
 .banner-background{
-  width: 110%;
-  height: 60px;
-  background-color: #28a4b9;
+  width: 100%;
+  height: 7%;
   background-image: linear-gradient(180deg,#28a4b9,black);
-  position: static;
-  align-self: center;
-  border-right: 100px;
-  border-color: #28a4b9;
-  max-width: 100%;
   color: white;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  position: static;
 }
 
-.program-name{
-  margin-top: 20px;
-  position: absolute;
-  margin-left: 47.5%;
+.site-title{
   font-size:40px;
-  text-align: center;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
   font-weight: bold;
   color:white;
   cursor: pointer;
-}
-
-.spacer{
-  flex: 1 1 auto;
-}
-
-
-.side-container {
-  position: absolute;
-  top: 90px;
-  bottom: 60px;
-  left: 0;
-  right: 10px;
-  width: fit-content;
-  height: 847px;
-}
-
-.side-sidenav {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  background-image: linear-gradient(280deg, #1f7483,rgb(11, 51, 63));
-  text-align: center;
-  z-index: 1000;
+  flex-direction: row;
+  height: 100%;
+  width: 10%;
 }
 
-.sidnav-button{
+.banner-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+.side-layout {
   position: absolute;
-  margin-top: 10px;
-  margin-left: 10px;
+  display: flex;
+  height: 100%;
+  background-color: transparent;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.right-nav-side{
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
+  width: 50%;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.left-nav-side{
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 100%;
+}
+
+.main-menu-button-container{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.sidenav-slider {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(280deg, #1f7483,rgb(11, 51, 63));
+}
+
+.main-menu-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 90%;
+  height: 90%;
+}
+
+.login-content{
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 .login-button{
-  float: right;
-  margin-top: 10px;
-  margin-right: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 80%;
+}
+
+.login-button:focus{
+  outline: none;
+}
+
+.main-menu-button:focus{
+  outline: none;
 }
 
 .side-menu-buttons{
-  background-color: blueviolet;
-  margin-top: 10px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  font-size: x-large;
 }
 
-.menu-name{
+.side-menu-buttons:hover{
+  background-color: white;
+  color: black;
+}
+
+.menu-title{
   font-size: 30px;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.side-menu-options{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
 }
 
 .menu-divider{
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  background-color: white;
 }
 
-.mat-icon{
+.mat-banner-icon{
   font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
-.sidenav-sidenav-content{
-  display: block;
-  position: relative;
-  z-index: 20000;
+.sidenav-content-container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 10%;
+  height: 93%;
+  top:7%;
+  position: absolute;
+  flex-wrap: wrap;
 }

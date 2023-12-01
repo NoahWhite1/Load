@@ -1,9 +1,9 @@
-.freightTable{
+.freight-table{
     position: relative;
     display: block;
 }
 
-.searchBar{
+.search-bar{
     position: relative;
     min-width: 100%;
     max-width: 100%;
@@ -18,7 +18,7 @@
     z-index: 22222;
 }
 
-.freightTabs{
+.freight-tab{
     width: 100%;
     min-width: 100%;
     max-width: 100%;

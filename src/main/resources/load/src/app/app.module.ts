@@ -10,7 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { HomePageComponent } from 'src/app/components/home-page/home-page.component';
 import {BannerComponent} from 'src/app/components/banner/banner.component';
-import { NavBarComponent } from 'src/app/components/nav-bar/nav-bar.component';
 import { LoginDisplayComponent } from 'src/app/components/login-display/login-display.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -40,7 +39,6 @@ import { AgmCoreModule } from '@agm/core';
     MapDisplayComponent,
     HomePageComponent,
     BannerComponent,
-    NavBarComponent,
     LoginDisplayComponent,
     LoadCalculatorPageComponent,
     FreightLoadTableComponent,

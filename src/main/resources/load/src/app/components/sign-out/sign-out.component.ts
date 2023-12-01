@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Person } from 'src/app/modules/person/person.module';
 import { PeopleService } from 'src/app/services/people-service/people.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class SignOutComponent implements OnInit {
 
   @Output ("toggleSignoutIcon") toggleSignout: EventEmitter<any> = new EventEmitter;
   isSignoutDisplayed:boolean = false;
-
+  personSignedIn:Person = new Person(0,"","","","",0,"", [], "");
   constructor(private peopleServ:PeopleService, private route:Router) { }
 
   ngOnInit(): void {
@@ -34,5 +35,4 @@ export class SignOutComponent implements OnInit {
       this.route.navigate(["/home"]);
     }
   }
-
 }
