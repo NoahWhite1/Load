@@ -1,8 +1,8 @@
 <div class="banner-background">
   <div class="banner-content">
     <div class="left-nav-side">
-      <div class="main-menu-button-container">
-        <button mat-icon-button (click)="sidenav.toggle()" class="main-menu-button mat-banner-icon">
+      <div class="main-menu-button-container" *ngIf="personSignedIn !== null && personSignedIn.pId > 0">
+        <button mat-icon-button (click)="sidenav.toggle()" class="main-menu-buttons">
           <mat-icon class="mat-banner-icon">menu</mat-icon>
         </button>
       </div>
@@ -21,13 +21,13 @@
           </mat-sidenav>
         </mat-sidenav-container>
       </div>
-      <div class="site-title" (click)="homePage()">Load</div>
+      <div class="site-title" (click)="homePage()" [ngStyle]="{'margin-left':(personSignedIn === null || personSignedIn.pId === 0) ? '3%' : '0%'}">Load</div>
     </div>
     <div class="right-nav-side">
       <div class="login-content">
-        <button mat-icon-button class="login-button">
-          <mat-icon class="mat-banner-icon" *ngIf="!isLoggedIn" (click)="loginDisplay()">login</mat-icon>
-          <mat-icon class="mat-banner-icon" *ngIf="isLoggedIn" (click)="signoutDisplay()">person</mat-icon>
+        <button mat-icon-button class="main-menu-buttons">
+          <mat-icon class="mat-banner-icon" *ngIf="personSignedIn === null" (click)="loginDisplay()">login</mat-icon>
+          <mat-icon class="mat-banner-icon" *ngIf="personSignedIn != null && personSignedIn.pId > 0" (click)="signoutDisplay()">person</mat-icon>
         </button>
       </div>
     </div>

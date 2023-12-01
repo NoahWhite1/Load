@@ -25,10 +25,10 @@ export class SignOutComponent implements OnInit {
   logout(){
     this.peopleServ.isSignedIn = false;
     this.peopleServ.person = null;
+    localStorage.setItem('pId', '');
     this.toggleSignout.emit();
     
     if(this.route.onSameUrlNavigation){
-      localStorage.setItem('pId', '');
       this.route.navigate(["/**"]);
     }
     else{

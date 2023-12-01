@@ -24,13 +24,14 @@
     height: 70%;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-content: center;
 }
 
 .home-page-section{
     width: 100%;
-    height: 90%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,26 +50,35 @@
 
 .logistics-type-section
 {
-    height: 70%;
+    height: 80%;
     width: 20%;
     border-radius: 10px;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-image: linear-gradient(180deg,#28a4b9,black);;
+    background-image: linear-gradient(5deg,#28a4b9,black);;
     color: white;
     border: 1px solid white;
 }
-
-.logistics-icon{
-    width: 50%;
-    height: auto;
+.menu-divider{
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
+    background-color: white;
+}
+
+.logistics-icon{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: 130px;
 }
 
 .logistics-title{
@@ -77,11 +87,15 @@
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-bottom: 1px solid white;
+    text-align: center;
 }
 
 .logistics-body-text{
     width: 100%;
-    height: 40%;
+    height: 30%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -89,4 +103,5 @@
     padding-left: 10%;
     padding-right: 10%;
     text-align: center;
+    flex-direction: column;
 }

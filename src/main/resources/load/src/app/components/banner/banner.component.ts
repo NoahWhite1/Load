@@ -22,9 +22,7 @@ export class BannerComponent {
   signOutDisplay:SignOutComponent;
   username:string = "";
   password:string = "";
-  isLoggedIn:boolean = false;
   options: FormGroup;
-  isTrucker:boolean = false;
   personSignedIn:Person = new Person(0, " ", " ", " ", " ", 0, " ", [], " ");
 
 
@@ -37,25 +35,17 @@ export class BannerComponent {
   }
 
   ngOnInit(): void {
-    this.getBreederSignedIn();
+  this.getBreederSignedIn();
 
     if(this.peopleServ.person === null){
       return;
-    }
-    else if(this.peopleServ.person.aLevel === 0){
-      this.isTrucker = true;
     }
   }
 
   
   async getBreederSignedIn(){
     this.personSignedIn = await this.peopleServ.findPersonById(parseInt(localStorage.getItem('pId')));
-    if(this.personSignedIn == undefined || this.personSignedIn == null){
-      this.isLoggedIn = false;
-    }
-    else{
-      this.isLoggedIn = true;
-    }
+    console.log(this.personSignedIn);
   }
   
   async loginDisplay(){
@@ -78,10 +68,5 @@ export class BannerComponent {
     else{
       this.route.navigate(["/home"]);
     }
-  }
-
-   toggleIsLoggedIn(){
-    this.isLoggedIn = !this.isLoggedIn;
-    this.peopleServ.isSignedIn = this.isLoggedIn;
   }
 }

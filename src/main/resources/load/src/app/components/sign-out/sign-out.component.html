@@ -1,8 +1,8 @@
-<div class = "signoutDisplay"*ngIf = "isSignoutDisplayed">
-<div class = "signoutContainer">
-<span class = "signoutText">Signout</span>
-<br>
-<button mat-flat-button class = "yesButton" (click) = "logout()">Yes</button>
-<button mat-flat-button class = "noButton" (click) = "toggleSignoutIcon()">No</button>
-</div>
+<div class="signoutDisplay" *ngIf="isSignoutDisplayed">
+    <div class="signoutContainer">
+        <span class="signoutText">Signout</span>
+        <br>
+        <button mat-flat-button class="yesButton" (click)="logout()">Yes</button>
+        <button mat-flat-button class="noButton" (click)="toggleSignoutIcon()">No</button>
+    </div>
 </div>
