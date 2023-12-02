@@ -1,15 +1,23 @@
-<mat-card class = "freightDisplay" (click) = "selectFreight()" [ngStyle]="{'background-image': freightColor}">
-
-    <mat-card-title class = "freightName">{{freightLoad.startAddress}} to {{freightLoad.endAddress}}</mat-card-title>
-    <mat-card-subtitle class = "freightBrokerName">freight broker: {{freightLoad.freightBroker.firstName}} {{freightLoad.freightBroker.lastName}}</mat-card-subtitle>
-    <div class = "freightContainer">
-        <span class="freightContent"><b class = "boldTitles">ID:</b> {{freightLoad.f_id}}</span>
-        <span class="freightContent"><b class = "boldTitles">Rate:</b> {{freightLoad.rate | money}}</span>
-        <span class = "freightContent"><b class = "boldTitles">Gas Cost:</b> {{freightLoad.gasCost | money}}</span>
-        <span class = "freightContent"><b class = "boldTitles">Driver Pay:</b> {{freightLoad.driverPay | money}}</span>
-        <span class = "freightContent"><b class = "boldTitles">Load Cost:</b> {{freightLoad.loadCost | money}}</span>
-        <span class = "freightContent"><b class = "boldTitles">Insurance Cost:</b> {{freightLoad.insuranceCost | money}}</span>
-        <span class = "freightContent"><b class = "boldTitles">Maintenance Cost:</b> {{freightLoad.maintenanceCost | money}}</span>
+<mat-card class="freight-display" (click)="selectFreight()" [ngStyle]="{'background-image': freightColor}">
+    <mat-card-title class="freight-title-text">
+        <div class="freight-locations">
+            <b>Pickup:</b>
+            {{freightLoad.startAddress}}
+        </div>
+        <div class="freight-locations">
+            <b>Deliver:</b>
+            {{freightLoad.endAddress}}
+        </div>
+    </mat-card-title>
+    <mat-card-subtitle class="freight-broker-title"><b>Broker:</b>{{freightLoad.freightBroker.firstName}}
+        {{freightLoad.freightBroker.lastName}}</mat-card-subtitle>
+    <div class="freight-container">
+        <div class="freight-content"><b>ID:</b> {{freightLoad.f_id}}</div>
+        <div class="freight-content"><b>Rate:</b> {{freightLoad.rate | money}}</div>
+        <div class="freight-content"><b>Gas Cost:</b> {{freightLoad.gasCost | money}}</div>
+        <div class="freight-content"><b>Driver Pay:</b> {{freightLoad.driverPay | money}}</div>
+        <div class="freight-content"><b>Load Cost:</b> {{freightLoad.loadCost | money}}</div>
+        <div class="freight-content"><b>Insurance Cost:</b> {{freightLoad.insuranceCost | money}}</div>
+        <div class="freight-content"><b>Maintenance Cost:</b> {{freightLoad.maintenanceCost | money}}</div>
     </div>
-
 </mat-card>

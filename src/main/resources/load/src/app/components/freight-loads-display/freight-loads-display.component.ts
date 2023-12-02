@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FreightLoadService } from 'src/app/services/freight-load-service/freight-load.service';
 import { PeopleService } from 'src/app/services/people-service/people.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
