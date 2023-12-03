@@ -1,16 +1,20 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { FreightLoadService } from 'src/app/services/freight-load-service/freight-load.service';
 import { PeopleService } from 'src/app/services/people-service/people.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FreightLoad } from 'src/app/modules/freight-load/freight-load.module';
 import { Person } from 'src/app/modules/person/person.module';
+import { Input } from '@angular/core';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+
 
 @Component({
   selector: 'app-freight-loads-display',
   templateUrl: './freight-loads-display.component.html',
-  styleUrls: ['./freight-loads-display.component.css']
+  styleUrls: ['./freight-loads-display.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class FreightLoadsDisplayComponent implements OnInit {
+export class FreightLoadsDisplayComponent implements AfterViewInit {
 
   @ViewChild(SearchBarComponent)
   searchBar:SearchBarComponent;
@@ -23,16 +27,60 @@ export class FreightLoadsDisplayComponent implements OnInit {
   freightDelivered:Array<FreightLoad> = [];
   freightFailed:Array<FreightLoad> = [];
   personSignedIn:Person = new Person(0, " ", " ", " ", " ", 0, " ", [], " ");
+  @ViewChild("loadStatusBoard")
+  loadStatusBoard: MatTabGroup;
+  @ViewChild("focusedTab")
+  tabToFocus:ElementRef;
+  inkBar:Element;
+  @Input()
+  selectedTab:number = 0;
 
-  constructor(private PersonServ:PeopleService, private freightServ:FreightLoadService, private cdr:ChangeDetectorRef) { }
+  constructor(private PersonServ:PeopleService, private freightServ:FreightLoadService, private renderer:Renderer2, private element:ElementRef) { }
 
-  ngOnInit() {
-
+  ngAfterViewInit() {
     this.getPersonSignedIn();
     if(this.personSignedIn != null || undefined){
       console.log("Finding loads now");
       this.findUserLoads();
     }
+    this.setTabFocus();
+  }
+
+  setTabFocus(){
+    this.onSelectedIndexChange(0);
+  }
+
+  setInkBar(){
+    let results:HTMLCollection = document.getElementsByClassName('mat-ink-bar');
+    this.inkBar = results[0];
+  }
+
+  colorInkBar(tabSelected:number){
+    switch(tabSelected){
+      case 0:
+        this.renderer.setStyle(this.inkBar, 'background-color', 'white');
+        break;
+      case 1:
+        this.renderer.setStyle(this.inkBar, 'background-color', 'blue');
+        break;
+      case 2:
+        this.renderer.setStyle(this.inkBar, 'background-color', 'yellow');
+        break;
+      case 3:
+        this.renderer.setStyle(this.inkBar, 'background-color', 'green');
+        break;
+      case 4:
+        this.renderer.setStyle(this.inkBar, 'background-color', 'red');
+        break;
+    }
+  }
+
+  onSelectedIndexChange(currentIndex:number){
+    if(this.inkBar == null || this.inkBar == undefined){
+      this.setInkBar();
+    }
+    this.selectedTab = currentIndex;
+    this.colorInkBar(this.selectedTab)
   }
 
   async getPersonSignedIn(){

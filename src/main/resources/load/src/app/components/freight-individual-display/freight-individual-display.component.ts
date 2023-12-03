@@ -48,8 +48,7 @@ export class FreightIndividualDisplayComponent implements AfterViewInit {
     "-" + this.phone[7] + this.phone[8] + this.phone[9]; 
   }
 
-  returnToPreviousPage(){
-    let previousPage = localStorage.getItem("previousPage");
-    this.route.navigate([previousPage]);
+  returnToLoadBoard(){
+    this.route.navigate(['my_freight_loads']);
   }
 }

@@ -1,96 +1,135 @@
-.map-display{
+.map-display {
     display: flex;
     width: 100%;
     height: 100%;
-    flex-wrap: wrap;
     justify-content: center;
     align-content: center;
     flex-direction: column;
 }
 
-.content-container{
+.content-container {
+    position: relative;
     width: 100%;
-    height: 84.6%;
+    height: 93%;
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-content: flex-start;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
-.map-display-container{
-    width: 50%;
+.map-display-container {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-end;
 }
 
-.freight-display-container{
+.freight-display-container {
     display: flex;
     width: 50%;
     height: 100%;
     justify-content: center;
-    align-content: center;
-    align-items: center;
+    align-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
-.freight-content{
+.freight-content {
+    height: 100%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-size: 20px;
     color: white;
-    justify-content: space-around;
-    align-content: center;
-    align-items: center;
+    justify-content: center;
+    align-content: flex-start;
     text-align: center;
 }
 
-.seperator{
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    height: 50px;
-    min-height: 5.5%;
-    max-height: 5.5%;
-    background-image: linear-gradient(180deg,#28A4B9,black);
-    display: flex;
-}
-
-.information-header{
+.information-header {
     font-size: 30px;
     display: flex;
     flex-direction: column;
     color: white;
     justify-content: center;
     align-content: center;
-    text-align: center;
-    margin-top: 2%;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+    background-image: linear-gradient(180deg,#28a4b9,black);
+    flex-wrap: wrap;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
 }
 
-.load-section-information{
+.load-section-information {
     display: flex;
     width: 100%;
-    height: 10%;
-    flex-direction: row;
-    justify-content: space-evenly;
-    text-align: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-content: center;
-    flex-wrap: wrap;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: auto;
 }
 
-.back-button{
+.back-button {
     position: absolute;
     display: flex;
     color: white;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    background-color: #28A4B9;
-    margin-left: 1.5%;
-    margin-top:1.5%;
-    width: 7%;
+    background-color: rgb(145, 1, 1);
+    border: 1px solid white;
+    z-index: 100;
+    margin-left: 1.0%;
+    margin-top: 1.0%;
+    width: 10%;
     height: 4%;
-    left: 0;
+    top: 0;
 }
+
+.back-button:focus{
+    outline: none;
+}
+
+.boldTitles {
+    font-weight: 300;
+}
+
+.freight-item {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    width: 30%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    text-align: center;
+}
+
+.freight-value {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    width: 50%;
+    height: 100%;
+    border: 1px solid white;
+    background-color: grey;
+    text-align: center;
+}
+
+.freight-item,.freight-value{
+    padding-top: .6%;
+    padding-bottom: .6%;
+}
+

@@ -1,55 +1,135 @@
 <app-banner></app-banner>
-<app-load-calculator-page (refreshTable)="ngAfterViewInit()" *ngIf="isUser"></app-load-calculator-page>
-<div class="seperator">&nbsp;</div>
 <div class="content-container">
-  <button mat-flat-button class="back-button">Back</button>
+  <button mat-flat-button class="back-button" (click)="returnToLoadBoard()">Back</button>
   <div class="freight-display-container">
-    <p class="information-header">General Information
-      <br>
-      __________________________
-    </p>
     <div class="load-section-information">
-      <div class="freight-content"><b class="boldTitles">ID:</b> {{freightLoad.f_id}}</div>
-      <div class="freight-content"><b class="boldTitles">Rate:</b> {{freightLoad.rate | money}}</div>
-      <div class="freight-content"><b class="boldTitles">Start Address:</b> {{freightLoad.startAddress}}</div>
-      <div class="freight-content"><b class="boldTitles">End Address:</b> {{freightLoad.endAddress}}</div>
-    </div>
-    <p class="information-header">Additional Costs
-      <br>
-      __________________________
-    </p>
-    <div class="load-section-information">
-      <div class="freight-content"><b class="boldTitles">Gas Cost:</b> {{freightLoad.gasCost | money}}</div>
-      <div class="freight-content"><b class="boldTitles">Driver Pay:</b> {{freightLoad.driverPay | money}}</div>
-      <div class="freight-content"><b class="boldTitles">Load Cost:</b> {{freightLoad.loadCost | money}}</div>
-      <div class="freight-content"><b class="boldTitles">Insurance Cost:</b> {{freightLoad.insuranceCost | money}}</div>
-      <div class="freight-content"><b class="boldTitles">Maintenance Cost:</b> {{freightLoad.maintenanceCost | money}}
+      <div class="information-header">General Information
+      </div>
+      <div class="freight-content">
+        <div class="freight-item">
+          <b class="boldTitles">ID:</b>
+        </div>
+        <div class="freight-value">
+          {{freightLoad.f_id}}</div>
+      </div>
+      <div class="freight-content">
+        <div class="freight-item">
+          <b class="boldTitles">Rate:</b>
+        </div>
+        <div class="freight-value">
+          {{freightLoad.rate | money}}
+        </div>
+      </div>
+      <div class="freight-content">
+        <div class="freight-item">
+          <b class="boldTitles">Start Address:</b>
+        </div>
+        <div class="freight-value">
+          {{freightLoad.startAddress}}
+        </div>
+      </div>
+      <div class="freight-content">
+        <div class="freight-item"><b class="boldTitles">End Address:</b>
+        </div>
+        <div class="freight-value">
+          {{freightLoad.endAddress}}</div>
+      </div>
+      <div class="load-section-information">
+        <div class="information-header">Additional Costs
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">Gas Cost:</b>
+          </div>
+          <div class="freight-value">
+            {{freightLoad.gasCost | money}}
+          </div>
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">Driver Pay:</b>
+          </div>
+          <div class="freight-value">{{freightLoad.driverPay | money}}</div>
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">
+              Load Cost:</b>
+          </div>
+          <div class="freight-value">
+            {{freightLoad.loadCost | money}}
+          </div>
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">
+              Insurance Cost:</b>
+          </div>
+          <div class="freight-value">
+            {{freightLoad.insuranceCost | money}}
+          </div>
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">Maintenance Cost:</b>
+          </div>
+          <div class="freight-value">
+            {{freightLoad.maintenanceCost | money}}
+          </div>
+        </div>
+      </div>
+      <div class="load-section-information">
+        <div class="information-header">Trip Duration
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">Arrival Time:</b>
+          </div>
+          <div class="freight-value">
+            {{arrivalTime}}
+          </div>
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">Departure Time:</b>
+          </div>
+          <div class="freight-value">
+            {{departureTime}}
+          </div>
+        </div>
+      </div>
+      <div class="load-section-information">
+        <div class="information-header">Route Information
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">
+            <b class="boldTitles">Length In Meters:</b>
+          </div>
+          <div class="freight-value">
+            {{lengthInMeters}}
+          </div>
+        </div>
+        <div class="freight-content">
+          <div class="freight-item"><b class="boldTitles">Traffic Delay In Seconds:</b></div>
+          <div class="freight-value"> {{trafficDelayInSeconds}}</div>
+        </div>
+        <div class="freight-content">
+          <div class="freight-item"><b class="boldTitles">Travel Time In Seconds:</b></div>
+          <div class="freight-value"> {{travelTimeInSeconds}}</div>
+        </div>
+      </div>
+      <div class="load-section-information">
+        <div class="information-header">For More Info
+        </div>
+        <div class="freight-content">
+          <div class="freight-item">Phone Number</div>
+          <div class="freight-value"> {{phone}}</div>
+        </div>
       </div>
     </div>
-    <p class="information-header">Trip Duration
-      <br>
-      __________________________
-    </p>
-    <div class="load-section-information">
-      <div class="freight-content"><b class="boldTitles">Arrival Time:</b> {{arrivalTime}}</div>
-      <div class="freight-content"><b class="boldTitles">Departure Time:</b> {{departureTime}}</div>
-    </div>
-    <p class="information-header">Route Information
-      <br>
-      __________________________
-    </p>
-    <div class="load-section-information">
-      <div class="freight-content"><b class="boldTitles">Length In Meters:</b> {{lengthInMeters}}</div>
-      <div class="freight-content"><b class="boldTitles">Traffic Delay In Seconds:</b> {{trafficDelayInSeconds}}</div>
-      <div class="freight-content"><b class="boldTitles">Travel Time In Seconds:</b> {{travelTimeInSeconds}}</div>
-    </div>
-    <div class="load-section-information">
-      <div class="freight-content"><b class="boldTitles">For More Info:</b> {{phone}}</div>
+    <div class="map-display-container">
+      <app-map-display class="map-display" (trafficDelayInSecondsChanged)="trafficDelayInSeconds=$event"
+        (travelTimeInSecondsChanged)="travelTimeInSeconds=$event" (arrivalTimeChanged)="arrivalTime=$event"
+        (lengthInMetersChanged)="lengthInMeters=$event" (departureTimeChanged)="departureTime=$event"></app-map-display>
     </div>
   </div>
-  <div class="map-display-container">
-    <app-map-display class="map-display" (trafficDelayInSecondsChanged)="trafficDelayInSeconds=$event"
-      (travelTimeInSecondsChanged)="travelTimeInSeconds=$event" (arrivalTimeChanged)="arrivalTime=$event"
-      (lengthInMetersChanged)="lengthInMeters=$event" (departureTimeChanged)="departureTime=$event"></app-map-display>
-  </div>
-</div>
