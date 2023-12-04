@@ -268,6 +268,10 @@ input{
     background-image: linear-gradient(270deg,#114f79,black) !important;
 }
 
+.load-panel-header:hover{
+    cursor: default;
+}
+
 .load-panel-header{
     display: flex;
     justify-content: flex-start;
@@ -286,10 +290,12 @@ input{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
     border: 1px solid white;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .load-creation-close-button{
@@ -299,10 +305,12 @@ input{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
     border: 1px solid white;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .load-expansion-button-container{
@@ -316,5 +324,9 @@ input{
 }
 
 .load-creation-expansion-button:focus{
+    outline: none;
+}
+
+.load-creation-close-button:focus{
     outline: none;
 }
