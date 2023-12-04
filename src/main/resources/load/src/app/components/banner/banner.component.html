@@ -6,9 +6,9 @@
           <mat-icon class="mat-banner-icon">menu</mat-icon>
         </button>
       </div>
-      <div class="sidenav-content-container">
+      <div class="sidenav-content-container" [ngStyle]="{'z-index':sidenav.opened === true ? '100' : '0'}">
         <mat-sidenav-container class="side-layout">
-          <mat-sidenav #sidenav mode="side" opened class="sidenav-slider" [fixedInViewport]="options.value.fixed"
+          <mat-sidenav #sidenav mode="side" class="sidenav-slider" [fixedInViewport]="options.value.fixed"
             [fixedTopGap]="options.value.top" [fixedBottomGap]="options.value.bottom" [opened]="false">
             <div class="menu-title"><b>Menu</b></div>
             <mat-divider class="menu-divider"></mat-divider>

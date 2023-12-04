@@ -18,7 +18,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { PeopleService } from './services/people-service/people.service';
-import { LoadCalculatorPageComponent } from './components/load-calculator-page/load-calculator-page.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FreightLoadService } from './services/freight-load-service/freight-load.service';
 import {MatMenuModule} from '@angular/material/menu';
@@ -31,7 +30,8 @@ import { FreightIndividualDisplayComponent } from './components/freight-individu
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
-import { AgmCoreModule } from '@agm/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,6 @@ import { AgmCoreModule } from '@agm/core';
     HomePageComponent,
     BannerComponent,
     LoginDisplayComponent,
-    LoadCalculatorPageComponent,
     FreightLoadTableComponent,
     FreightLoadsDisplayComponent,
     SignOutComponent,
@@ -66,9 +65,8 @@ import { AgmCoreModule } from '@agm/core';
     MatCardModule,
     MatGridListModule,
     MatTabsModule,
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyAGrF139nRMHl9KZifsl_Fib0GOQ-AR23E"
-    })
+    MatSelectModule,
+    MatExpansionModule
 
   ],
   providers: [PeopleService, FreightLoadService],

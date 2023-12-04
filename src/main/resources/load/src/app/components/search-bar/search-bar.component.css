@@ -1,31 +1,320 @@
-.search-form{
-color: white;
-}
-
-.matFieldSearch{
+.search-label-text{
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.searchPlaceholder{
-    color: white;
-}
-
-html,body{
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-    min-height: 100%;
-}
-
-.search_icon:hover{
+.search-icon:hover{
     cursor: pointer;
 }
 
-.searchByText{
-    position: relative;
-    z-index: 22200;
+.search-icon:focus{
+    outline:none;
 }
 
-::ng-deep.cdk-overlay-container{
-    z-index: 22000;
+.search-bar-container{
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: white;
+    background-image: linear-gradient(270deg,#114f79,black) !important;
+}
+
+input::placeholder {
+    color: rgb(129, 129, 129);
+}
+
+.mat-input-element{
+    caret-color: white;
+}
+
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline 
+    {
+       color: white;
+    }
+
+.high-to-low-sorter{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: fit-content;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid white;
+    margin-left: 1%;
+}
+
+.high-to-low-sorter:focus{
+    outline: none;
+}
+
+.sort-by-category{
+    display: flex;
+    height: 100%;
+    width: fit-content;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    border:1px solid white;
+    margin-left: 1%;
+}
+
+.sort-by-category:focus{
+    outline: none;
+}
+
+.search-bar{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.mat-field-search{
+    display: flex;
+    width: fit-content;
+    height:100%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-left: 1%;
+}
+
+.mat-field-search{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.calculator-container{
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: 14px;
+    border: 1px solid white;
+    margin-top: 1%;
+}
+
+.load-calculator-title{
+    font-size: 30px;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.calculator-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.calculator-button{
+    color: white;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.add-freight-button{
+    display: flex;
+    background-color: green;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 30%;
+    height: 20%;
+}
+
+.submit-button-icon{
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.field.input{
+    width: 20%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+.input-label{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.input-text{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.input-dropdown-text{
+    display: flex;
+    color: white !important;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+::ng-deep .mat-select-arrow{
+    color: white !important;
+}
+
+::ng-deep .mat-select-value-text{
+    color: white;
+}
+.input-dropdown-options{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: black;
+}
+
+input::placeholder{
+    color: grey;
+}
+
+input{
+    color: white;
+}
+
+.field-input:nth-child(1n){
+    flex-basis: 15%;
+    display: flex;
+}
+
+.load-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    margin-left: auto;
+}
+
+.load-form-feedback{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    color: white;
+    font-size: 24px;
+    flex-wrap: wrap;
+}
+
+.load-accordion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.load-expansion-panel{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-image: linear-gradient(270deg,#114f79,black) !important;
+}
+
+.load-panel-header{
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(270deg,#114f79,black) !important;
+}
+
+.load-creation-expansion-button{
+    color: white;
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.load-creation-close-button{
+    color: white;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.load-expansion-button-container{
+    justify-content: center;
+    align-content: flex-end;
+    display: flex;
+    height: 100%;
+    width: 10%;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.load-creation-expansion-button:focus{
+    outline: none;
 }

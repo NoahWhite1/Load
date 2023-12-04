@@ -44,10 +44,15 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
       this.findUserLoads();
     }
     this.setTabFocus();
+    this.hideOverflow();
   }
 
   setTabFocus(){
     this.onSelectedIndexChange(0);
+  }
+
+  hideOverflow(){
+    this.renderer.setStyle(document.body,'overflow', 'hidden');
   }
 
   setInkBar(){
