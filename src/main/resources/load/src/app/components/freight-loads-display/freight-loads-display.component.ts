@@ -145,7 +145,6 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
       
       case 0: //Any
         break;
-
       case 1: //ID
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.f_id < b.f_id)? 1:-1);
@@ -154,7 +153,6 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.f_id > b.f_id)? 1:-1);
         }
         break;
-
       case 2: //Rate
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.rate < b.rate)? 1:-1);
@@ -163,7 +161,6 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.rate > b.rate)? 1:-1);
         }
         break;  
-      
       case 3: //Start Address
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.startAddress < b.startAddress)? 1:-1);
@@ -172,7 +169,6 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.startAddress > b.startAddress)? 1:-1);
         }
       break;
-      
       case 4: //End Address
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.endAddress < b.endAddress)? 1:-1);
@@ -181,8 +177,7 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.endAddress > b.endAddress)? 1:-1);
         }
         break;
-      
-      case 6: //Gas Cost
+      case 5: //Gas Cost
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.gasCost < b.gasCost)? 1:-1);
         }
@@ -190,8 +185,7 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.gasCost > b.gasCost)? 1:-1);
         }
         break;
-      
-      case 7: //Driver Pay
+      case 6: //Driver Pay
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.driverPay < b.driverPay)? 1:-1);
         }
@@ -199,8 +193,7 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.driverPay > b.driverPay)? 1:-1);
         }
         break;
-
-      case 8: //Load Cost
+      case 7: //Load Cost
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.loadCost < b.loadCost)? 1:-1);
         }
@@ -208,8 +201,7 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.loadCost > b.loadCost)? 1:-1);
         }
         break;
-
-      case 9: //Insurance Cost
+      case 8: //Insurance Cost
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.insuranceCost < b.insuranceCost)? 1:-1);
         }
@@ -217,8 +209,7 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.insuranceCost > b.insuranceCost)? 1:-1);
         }
         break;
-        
-      case 10: //Maintenance Cost
+      case 9: //Maintenance Cost
         if(this.isLowToHigh){
           freightList.sort((a,b) => (a.maintenanceCost < b.maintenanceCost)? 1:-1);
         }
@@ -226,7 +217,6 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
           freightList.sort((a,b) => (a.maintenanceCost > b.maintenanceCost)? 1:-1);
         }
       break;
-
       default:
         break;
     }

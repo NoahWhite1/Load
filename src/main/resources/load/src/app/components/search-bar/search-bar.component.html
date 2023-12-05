@@ -1,128 +1,155 @@
-
 <mat-accordion class="load-accordion" [ngStyle]="{'height': isLoadCreationToggled === true ? '100%' : '200%'}">
   <mat-expansion-panel [disabled]="true" [expanded]="isLoadCreationToggled" class="load-expansion-panel">
     <mat-expansion-panel-header class="load-panel-header">
-        <div class="search-bar-container">
-          <button mat-button class="sort-by-category" [matMenuTriggerFor]="sortbymenu">{{searchByText}}</button>
-          <mat-menu #sortbymenu="matMenu" class="search-by-text">
-            <button mat-menu-item (click)="searchForAnything()">Sort By: Anything</button>
-            <button mat-menu-item (click)="searchByIds()">Sort By: ID</button>
-            <button mat-menu-item (click)="searchForRates()">Sort By: Rate</button>
-            <button mat-menu-item (click)="searchForStartAddresses()">Sort By: Start Address</button>
-            <button mat-menu-item (click)="searchForEndAddresses()">Sort By: End Address</button>
-            <button mat-menu-item (click)="searchByStates()">Sort By: State</button>
-            <button mat-menu-item (click)="searchByGasCost()">Sort By: Gas Cost</button>
-            <button mat-menu-item (click)="searchByDriverPay()">Sort By: Driver Pay</button>
-            <button mat-menu-item (click)="searchByLoadCost()">Sort By: Load Cost</button>
-            <button mat-menu-item (click)="searchByInsuranceCost()">Sort By: Insurance Cost</button>
-            <button mat-menu-item (click)="searchByMaintenanceCost()">Sort By: Maintenance Cost</button>
-        
-          </mat-menu>
-        
-          <button mat-button class="high-to-low-sorter" [matMenuTriggerFor]="sortfrommenu">{{lowToHighText}}</button>
-          <mat-menu #sortfrommenu="matMenu">
-            <button mat-menu-item (click)="sortFromLowToHigh()">Sort From: Low to High</button>
-            <button mat-menu-item (click)="sortFromHighToLow()">Sort From: High to Low</button>
-          </mat-menu>
+      <div class="search-bar-container">
+        <form [formGroup]="searchOptionsForm" class="search-options-form">
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label" for="sort-by">Sort By:</mat-label>
+            <!-- <div matPrefix class="mat-prefix-sorter-icon"><mat-icon>home</mat-icon></div> -->
+            <mat-select class="input-dropdown-text" formControlName="sortByField">
+              <mat-option class="input-dropdown-options" (click)="searchByIds()" value="0">ID</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchForRates()" value="1">Rate</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchForStartAddresses()" value="2">Start Address</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchForEndAddresses()" value="3">End Address</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchByGasCost()" value="4">Gas Cost</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchByDriverPay()" value="5">Driver Pay</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchByLoadCost()" value="6">Load Cost</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchByInsuranceCost()" value="7">Insurance Cost</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchByMaintenanceCost()" value="8">Maintenance Cost</mat-option>
+            </mat-select>
+            <!-- <div matSuffix class="mat-suffix-sorter-icon"><mat-icon>home</mat-icon></div> -->
+
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Sort From:</mat-label>
+            <mat-select-trigger class="dropdown-trigger">
+              <div class="dropdown-suffix-left" *ngIf="!isSortedFromHighToLow">
+                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
+                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
+              </div>
+              <div class="dropdown-suffix-left" *ngIf="isSortedFromHighToLow">
+                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
+                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
+              </div>
+
+              <div class="dropdown-suffix-right" *ngIf="!isSortedFromHighToLow">
+                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
+                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
+              </div>
+              <div class="dropdown-suffix-right" *ngIf="isSortedFromHighToLow">
+                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
+                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
+              </div>
+            </mat-select-trigger>
+            <mat-select class="input-dropdown-text" formControlName="sortDirection"  disableOptionCentering panelClass="dropdown-panel">
+              <mat-option class="input-dropdown-options" (click)="sortFromLowToHigh()" value="0">Low to
+                High</mat-option>
+              <mat-option class="input-dropdown-options" (click)="sortFromHighToLow()" value="1">High to
+                Low</mat-option>
+            </mat-select>
+          </mat-form-field>
           <mat-form-field class="mat-field-search" appearance="outline">
             <mat-label class="search-label-text">Search</mat-label>
-            <input matInput class="search-bar" [(ngModel)]="searchBar" type="text" value=""
+            <input matInput class="search-bar" formControlName="searchInput" type="text" value=""
               placeholder="$50000, 123 Test Ave, John Adams">
             <button mat-icon-button matSuffix class="search-icon" (click)="searching()">
               <mat-icon matSuffix>search</mat-icon>
             </button>
           </mat-form-field>
-          <div class="load-expansion-button-container">
-            <button mat-flat-button class="load-creation-expansion-button" *ngIf="!isLoadCreationToggled" (click)="openLoadCreation()">Open Load Creation</button>
-            <button mat-flat-button class="load-creation-close-button" *ngIf="isLoadCreationToggled" (click)="closeLoadCreation()">Close Load Creation</button>
-
-          </div>
+        </form>
+        <div class="load-expansion-button-container">
+          <button mat-flat-button class="load-creation-expansion-button" *ngIf="!isLoadCreationToggled"
+            (click)="openLoadCreation()">Open Load Creation</button>
+          <button mat-flat-button class="load-creation-close-button" *ngIf="isLoadCreationToggled"
+            (click)="closeLoadCreation()">Close Load Creation</button>
         </div>
+      </div>
     </mat-expansion-panel-header>
     <div class="calculator-container">
       <div class="calculator-content">
-          <div class="load-calculator-title">Add Load</div>
-          <form [formGroup]="loadForm" (ngSubmit)="newLoad(formDirective)" #formDirective="ngForm" class="load-form">
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Rate</mat-label>
-                  <input matInput class="input-text" type="number" formControlName="rate" ng-blur='isInputValid(rate)' required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Pickup Street Address</mat-label>
-                  <input matInput class="input-text" formControlName="address1" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Pickup City</mat-label>
-                  <input matInput class="input-text"  formControlName="city1" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Pickup State</mat-label>
-                  <input matInput class="input-text"  formControlName="state1" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Pickup Zipcode</mat-label>
-                  <input matInput class="input-text"  formControlName="zipcode1" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Delivery Street Address</mat-label>
-                  <input matInput class="input-text"  formControlName="address2" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Delivery City</mat-label>
-                  <input matInput class="input-text"  formControlName="city2" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Delivery State</mat-label>
-                  <input matInput class="input-text"  formControlName="state2" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Delivery Zipcode</mat-label>
-                  <input matInput class="input-text"  formControlName="zipcode2" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Gas Cost</mat-label>
-                  <input matInput class="input-text" type="number"  formControlName="gasCost" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Truck Driver Pay</mat-label>
-                  <input matInput class="input-text" type="number"  formControlName="truckDriverPay" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Load Cost</mat-label>
-                  <input matInput class="input-text" type="number"  formControlName="loadCost" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Insurance Cost</mat-label>
-                  <input matInput class="input-text" type="number"  formControlName="insuranceCost" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="field-input">
-                  <mat-label class="input-label">Maintenance Cost</mat-label>
-                  <input matInput class="input-text" type="number" formControlName="maintenanceCost" required>
-              </mat-form-field>
-              <mat-form-field appearance="outline" type="number" class="field-input">
-                  <mat-label class="input-label">Load Status</mat-label>
-                  <mat-select class="input-dropdown-text" formControlName="status" required>
-                    <mat-option class="input-dropdown-options" value="0">Posted</mat-option>
-                    <mat-option class="input-dropdown-options" value="1">In Progress</mat-option>
-                    <mat-option class="input-dropdown-options" value="2">Completed</mat-option>
-                    <mat-option class="input-dropdown-options" value="3">Not Completed</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                
-              <button mat-flat-button color="green" [disabled]="!loadForm.valid" type="submit" class="add-freight-button">
-                  <div *ngIf="loadForm.valid" class="load-form-feedback">
-                      <mat-icon  class="submit-button-icon">add_task</mat-icon>
-                      Create Load
-                      <mat-icon  class="submit-button-icon">add_task</mat-icon>
-                  </div>
-                  <div *ngIf="!loadForm.valid" class="load-form-feedback">
-                      <mat-icon  class="submit-button-icon">error_outline</mat-icon>
-                      Add information required to submit...
-                      <mat-icon  class="submit-button-icon">error_outline</mat-icon>
-                  </div>
-              </button>
-          </form>
+        <div class="load-calculator-title">Add Load</div>
+        <form [formGroup]="loadForm" (ngSubmit)="newLoad(formDirective)" #formDirective="ngForm" class="load-form">
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Rate</mat-label>
+            <input matInput class="input-text" type="number" formControlName="rate" ng-blur='isInputValid(rate)'
+              required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Pickup Street Address</mat-label>
+            <input matInput class="input-text" formControlName="address1" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Pickup City</mat-label>
+            <input matInput class="input-text" formControlName="city1" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Pickup State</mat-label>
+            <input matInput class="input-text" formControlName="state1" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Pickup Zipcode</mat-label>
+            <input matInput class="input-text" formControlName="zipcode1" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Delivery Street Address</mat-label>
+            <input matInput class="input-text" formControlName="address2" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Delivery City</mat-label>
+            <input matInput class="input-text" formControlName="city2" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Delivery State</mat-label>
+            <input matInput class="input-text" formControlName="state2" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Delivery Zipcode</mat-label>
+            <input matInput class="input-text" formControlName="zipcode2" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Gas Cost</mat-label>
+            <input matInput class="input-text" type="number" formControlName="gasCost" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Truck Driver Pay</mat-label>
+            <input matInput class="input-text" type="number" formControlName="truckDriverPay" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Load Cost</mat-label>
+            <input matInput class="input-text" type="number" formControlName="loadCost" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Insurance Cost</mat-label>
+            <input matInput class="input-text" type="number" formControlName="insuranceCost" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="field-input">
+            <mat-label class="input-label">Maintenance Cost</mat-label>
+            <input matInput class="input-text" type="number" formControlName="maintenanceCost" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" type="number" class="field-input">
+            <mat-label class="input-label">Load Status</mat-label>
+            <mat-select class="input-dropdown-text" formControlName="status" required>
+              <mat-option class="input-dropdown-options" value="0">Posted</mat-option>
+              <mat-option class="input-dropdown-options" value="1">In Progress</mat-option>
+              <mat-option class="input-dropdown-options" value="2">Completed</mat-option>
+              <mat-option class="input-dropdown-options" value="3">Not Completed</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-flat-button color="green" [disabled]="!loadForm.valid" type="submit" class="add-freight-button">
+            <div *ngIf="loadForm.valid" class="load-form-feedback">
+              <mat-icon class="submit-button-icon">add_task</mat-icon>
+              Create Load
+              <mat-icon class="submit-button-icon">add_task</mat-icon>
+            </div>
+            <div *ngIf="!loadForm.valid" class="load-form-feedback">
+              <mat-icon class="submit-button-icon">error_outline</mat-icon>
+              Add information required to submit...
+              <mat-icon class="submit-button-icon">error_outline</mat-icon>
+            </div>
+          </button>
+        </form>
       </div>
-  </div>
+    </div>
   </mat-expansion-panel>
-  </mat-accordion>
+</mat-accordion>

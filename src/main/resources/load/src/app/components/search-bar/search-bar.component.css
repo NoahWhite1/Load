@@ -67,8 +67,26 @@ input::placeholder {
     margin-left: 1%;
 }
 
+.sort-menu-item{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
 .sort-by-category:focus{
     outline: none;
+}
+
+.search-options-form{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .search-bar{
@@ -89,14 +107,6 @@ input::placeholder {
     align-items: flex-start;
     flex-direction: row;
     margin-left: 1%;
-}
-
-.mat-field-search{
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
 }
 
 .calculator-container{
@@ -160,19 +170,18 @@ input::placeholder {
     flex-direction: row;
 }
 
-.field.input{
-    width: 20%;
-    height: 5%;
+.field-input{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
     flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
+    text-align: center;
+    margin-left: 1%;
 }
 .input-label{
     color: white;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-content: center;
 }
@@ -181,18 +190,76 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-content: center;
-    flex-direction: row;
+
 }
 
 .input-dropdown-text{
     display: flex;
     color: white !important;
+    flex-direction: column;
+    height: 2.25vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dropdown-trigger{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background:transparent;
+}
+
+.sorter-icon{
+    display: flex;
+    color: white;
+    background-color: transparent;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.dropdown-suffix-left{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    flex-direction: row;
+    align-content: center;
+    position: absolute;
+    margin-right: 70%;
+    margin-bottom: auto;
+    margin-top: 7%;
+}
+
+.dropdown-suffix-right{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    flex-direction: row;
+    align-content: center;
+    position: absolute;
+    margin-left: 50%;
+    margin-bottom: auto;
+    margin-top: 7%;
+}
+
+.input-dropdown-options{
+    display: flex;
     width: 100%;
     height: 100%;
     justify-content: center;
     align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
+    text-align: center;
+    flex-direction: row;
+    color: black;
 }
 
 ::ng-deep .mat-select-arrow{
@@ -201,16 +268,6 @@ input::placeholder {
 
 ::ng-deep .mat-select-value-text{
     color: white;
-}
-.input-dropdown-options{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    color: black;
 }
 
 input::placeholder{
@@ -224,6 +281,29 @@ input{
 .field-input:nth-child(1n){
     flex-basis: 15%;
     display: flex;
+}
+
+
+
+
+.mat-prefix-sorter-icon{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.mat-suffix-sorter-icon{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .load-form{
@@ -274,8 +354,8 @@ input{
 
 .load-panel-header{
     display: flex;
-    justify-content: flex-start;
-    align-content: flex-start;
+    justify-content: center;
+    align-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
