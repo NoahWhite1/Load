@@ -16,6 +16,7 @@ export class SearchBarComponent implements OnInit {
   searchBar:string = "";
   searchNumber:number = 0;
   isSortedFromHighToLow:boolean = false;
+  isLoadBeingGenerated:boolean = false;
   loadForm = new FormGroup({
     address1: new FormControl(''),
     city1: new FormControl(''),
@@ -48,6 +49,7 @@ export class SearchBarComponent implements OnInit {
     this.getPersonSignedIn();
   }
   async newLoad(formDirective:FormGroupDirective){
+    this.isLoadBeingGenerated = true;
     console.log("executing new load function...");
     let startAddress:string = this.loadForm.get('address1').value + ", " +this.loadForm.get('city1').value + ", " + this.loadForm.get('state1').value + " " + this.loadForm.get('zipcode1').value;
     let endAddress:string = this.loadForm.get('address2').value + ", " +this.loadForm.get('city2').value + ", " + this.loadForm.get('state2').value + " " + this.loadForm.get('zipcode2').value;
@@ -58,6 +60,7 @@ export class SearchBarComponent implements OnInit {
     await this.freightServ.createFreightLoad(newFreight, this.personSignedIn.pId);
     this.loadForm.reset();
     formDirective.resetForm();
+    this.isLoadBeingGenerated = false;
   }
 
   openLoadCreation(){

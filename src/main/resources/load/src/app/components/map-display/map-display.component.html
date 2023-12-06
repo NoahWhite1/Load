@@ -1,1 +1,6 @@
-<div id="map"></div>
+<div id="map">
+    <div class="load-map-bar-container">
+        <h2 class="loading-title">Loading...</h2>
+        <mat-spinner *ngIf="!isLoaded" class="load-map-bar"></mat-spinner>
+    </div>
+</div>

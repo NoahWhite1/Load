@@ -32,6 +32,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatGridListModule,
     MatTabsModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [PeopleService, FreightLoadService],

@@ -21,7 +21,7 @@ export class MapDisplayComponent implements AfterViewInit {
   @Output() lengthInMetersChanged = new EventEmitter<number>();
   @Output() trafficDelayInSecondsChanged = new EventEmitter<number>();
   @Output() travelTimeInSecondsChanged = new EventEmitter<number>();
-  obj: any = {};
+  isLoaded:boolean = false;
   constructor(private freightServ: FreightLoadService, private cdr: ChangeDetectorRef, private directionServ: DirectionService) { }
 
   ngAfterViewInit() {
@@ -114,6 +114,7 @@ export class MapDisplayComponent implements AfterViewInit {
     this.setPageData(newRoute.summary);
 
     await this.initalizeMap(routePointsConverted);
+    this.isLoaded = true;
   }
 
   convertLatLng(position:LatLng):tt.LngLat

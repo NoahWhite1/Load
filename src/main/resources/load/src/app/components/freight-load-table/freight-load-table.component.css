@@ -12,6 +12,10 @@
 }
 
 .freight-display:hover{
+    cursor: pointer;
+}
+
+.freight-display:hover{
     box-shadow: 5px 5px white;
 }
 

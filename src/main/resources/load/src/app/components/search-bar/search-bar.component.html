@@ -4,49 +4,42 @@
       <div class="search-bar-container">
         <form [formGroup]="searchOptionsForm" class="search-options-form">
           <mat-form-field appearance="outline" class="field-input">
-            <mat-label class="input-label" for="sort-by">Sort By:</mat-label>
-            <!-- <div matPrefix class="mat-prefix-sorter-icon"><mat-icon>home</mat-icon></div> -->
+            <mat-label class="input-label">Sort By:</mat-label>
+            <!-- <span matPrefix class="mat-prefix-sorter-icon"><mat-icon class="sorter-icon">home</mat-icon></span> -->
             <mat-select class="input-dropdown-text" formControlName="sortByField">
               <mat-option class="input-dropdown-options" (click)="searchByIds()" value="0">ID</mat-option>
               <mat-option class="input-dropdown-options" (click)="searchForRates()" value="1">Rate</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchForStartAddresses()" value="2">Start Address</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchForEndAddresses()" value="3">End Address</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchForStartAddresses()" value="2">Start
+                Address</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchForEndAddresses()" value="3">End
+                Address</mat-option>
               <mat-option class="input-dropdown-options" (click)="searchByGasCost()" value="4">Gas Cost</mat-option>
               <mat-option class="input-dropdown-options" (click)="searchByDriverPay()" value="5">Driver Pay</mat-option>
               <mat-option class="input-dropdown-options" (click)="searchByLoadCost()" value="6">Load Cost</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchByInsuranceCost()" value="7">Insurance Cost</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchByMaintenanceCost()" value="8">Maintenance Cost</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchByInsuranceCost()" value="7">Insurance
+                Cost</mat-option>
+              <mat-option class="input-dropdown-options" (click)="searchByMaintenanceCost()" value="8">Maintenance
+                Cost</mat-option>
             </mat-select>
-            <!-- <div matSuffix class="mat-suffix-sorter-icon"><mat-icon>home</mat-icon></div> -->
+            <!-- <span matSuffix class="mat-suffix-sorter-icon"><mat-icon class="sorter-icon">home</mat-icon></span> -->
 
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
+            <span matPrefix class="mat-prefix-sorter-icon">
+              <mat-icon class="sorter-icon" *ngIf="!isSortedFromHighToLow">arrow_downward</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="isSortedFromHighToLow">arrow_upward</mat-icon>
+            </span>
             <mat-label class="input-label">Sort From:</mat-label>
-            <mat-select-trigger class="dropdown-trigger">
-              <div class="dropdown-suffix-left" *ngIf="!isSortedFromHighToLow">
-                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
-                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
-              </div>
-              <div class="dropdown-suffix-left" *ngIf="isSortedFromHighToLow">
-                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
-                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
-              </div>
-
-              <div class="dropdown-suffix-right" *ngIf="!isSortedFromHighToLow">
-                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
-                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
-              </div>
-              <div class="dropdown-suffix-right" *ngIf="isSortedFromHighToLow">
-                <mat-icon class="sorter-icon">arrow_upward</mat-icon>
-                <mat-icon class="sorter-icon">arrow_downward</mat-icon>
-              </div>
-            </mat-select-trigger>
-            <mat-select class="input-dropdown-text" formControlName="sortDirection"  disableOptionCentering panelClass="dropdown-panel">
+            <mat-select class="input-dropdown-text" formControlName="sortDirection" panelClass="dropdown-panel">
               <mat-option class="input-dropdown-options" (click)="sortFromLowToHigh()" value="0">Low to
                 High</mat-option>
               <mat-option class="input-dropdown-options" (click)="sortFromHighToLow()" value="1">High to
                 Low</mat-option>
             </mat-select>
+            <span matSuffix class="mat-suffix-sorter-icon">
+              <mat-icon class="sorter-icon" *ngIf="!isSortedFromHighToLow">arrow_downward</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="isSortedFromHighToLow">arrow_upward</mat-icon>
+            </span>
           </mat-form-field>
           <mat-form-field class="mat-field-search" appearance="outline">
             <mat-label class="search-label-text">Search</mat-label>
@@ -59,9 +52,25 @@
         </form>
         <div class="load-expansion-button-container">
           <button mat-flat-button class="load-creation-expansion-button" *ngIf="!isLoadCreationToggled"
-            (click)="openLoadCreation()">Open Load Creation</button>
+            (click)="openLoadCreation()">
+            <span class="mat-prefix-sorter-icon">
+              <mat-icon class="sorter-icon">create</mat-icon>
+            </span>
+              <div class="load-creation-button-toggle-text">Open Load Creation</div>
+            <span class="mat-suffix-sorter-icon">
+              <mat-icon class="sorter-icon">create</mat-icon>
+            </span>
+          </button>
           <button mat-flat-button class="load-creation-close-button" *ngIf="isLoadCreationToggled"
-            (click)="closeLoadCreation()">Close Load Creation</button>
+            (click)="closeLoadCreation()">
+            <span class="mat-prefix-sorter-icon">
+            <mat-icon class="sorter-icon">close</mat-icon>
+            </span>
+            Close Load Creation
+            <span class="mat-suffix-sorter-icon">
+              <mat-icon class="sorter-icon">close</mat-icon>
+              </span>
+          </button>
         </div>
       </div>
     </mat-expansion-panel-header>
@@ -137,15 +146,29 @@
           </mat-form-field>
 
           <button mat-flat-button color="green" [disabled]="!loadForm.valid" type="submit" class="add-freight-button">
-            <div *ngIf="loadForm.valid" class="load-form-feedback">
-              <mat-icon class="submit-button-icon">add_task</mat-icon>
-              Create Load
-              <mat-icon class="submit-button-icon">add_task</mat-icon>
+            <div *ngIf="loadForm.valid && !isLoadBeingGenerated" class="load-form-feedback">
+              <span class="mat-prefix-sorter-icon">
+              <mat-icon class="sorter-icon">add_task</mat-icon>
+            </span>
+              <div class="load-creation-button-toggle-text">Create Load</div>
+              <span class="mat-suffix-sorter-icon">
+              <mat-icon class="sorter-icon">add_task</mat-icon>
+            </span>
             </div>
-            <div *ngIf="!loadForm.valid" class="load-form-feedback">
-              <mat-icon class="submit-button-icon">error_outline</mat-icon>
-              Add information required to submit...
-              <mat-icon class="submit-button-icon">error_outline</mat-icon>
+            <div *ngIf="!loadForm.valid && !isLoadBeingGenerated" class="load-form-feedback">
+              <span class="mat-prefix-sorter-icon">
+                <mat-icon class="sorter-icon warning-icon">error_outline</mat-icon>
+              </span>
+              <div class="load-creation-button-toggle-text">Add information required to submit...</div>
+              <span class="mat-suffix-sorter-icon">
+                <mat-icon class="sorter-icon warning-icon">error_outline</mat-icon>
+              </span>
+            </div>
+            <div *ngIf="isLoadBeingGenerated" class="load-form-feedback">
+              <div class="create-freight-loading-bar-container">
+                <h2 class="create-freight-loading-bar-title">Creating Load...</h2>
+                <mat-spinner class="create-freight-loading-bar"></mat-spinner>
+              </div>
             </div>
           </button>
         </form>
