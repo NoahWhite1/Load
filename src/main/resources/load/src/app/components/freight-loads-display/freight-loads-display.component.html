@@ -1,5 +1,5 @@
 <app-banner></app-banner>
-<app-search-bar class="search-bar" (searchFor)="ngAfterViewInit()"></app-search-bar>
+<app-search-bar class="search-bar" (searchFor)="sortLoadsBy($event)"></app-search-bar>
 <div class="tab-group-parent">
     <mat-tab-group class="tabs-container" mat-align-tabs="center" #loadStatusBoard [(selectedIndex)]="selectedTab"
         (selectedIndexChange)="onSelectedIndexChange($event)">

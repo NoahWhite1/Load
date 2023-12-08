@@ -102,8 +102,6 @@ export class MapDisplayComponent implements AfterViewInit {
   }
 
   async loadRoute(address1: string, address2: string) {
-
-
     let startCord:tt.LngLat = await this.findAddressCords(address1);
     let endCord:tt.LngLat = await this.findAddressCords(address2);
     let routeResult: CalculateRouteResult = await this.freightServ.loadRoute(startCord, endCord);

@@ -4,24 +4,38 @@
       <div class="search-bar-container">
         <form [formGroup]="searchOptionsForm" class="search-options-form">
           <mat-form-field appearance="outline" class="field-input">
+            <span matPrefix class="mat-prefix-sorter-icon">
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '0'">rule_folder</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '1'">savings</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '2'">flag</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '3'">mode_standby</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '4'">local_gas_station</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '5'">request_quote</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '6'">local_shipping</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '7'">payments</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '8'">handyman</mat-icon>
+            </span>
             <mat-label class="input-label">Sort By:</mat-label>
-            <!-- <span matPrefix class="mat-prefix-sorter-icon"><mat-icon class="sorter-icon">home</mat-icon></span> -->
             <mat-select class="input-dropdown-text" formControlName="sortByField">
-              <mat-option class="input-dropdown-options" (click)="searchByIds()" value="0">ID</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchForRates()" value="1">Rate</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchForStartAddresses()" value="2">Start
-                Address</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchForEndAddresses()" value="3">End
-                Address</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchByGasCost()" value="4">Gas Cost</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchByDriverPay()" value="5">Driver Pay</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchByLoadCost()" value="6">Load Cost</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchByInsuranceCost()" value="7">Insurance
-                Cost</mat-option>
-              <mat-option class="input-dropdown-options" (click)="searchByMaintenanceCost()" value="8">Maintenance
-                Cost</mat-option>
+              <mat-option class="input-dropdown-options" *ngFor="let category of searchByFieldOptionsArray" (click)="sortByCategoryIdAndSortDirection(category.id, isSortedFromHighToLow)" value="{{category.id}}">
+                <div class="option-content">
+                  <span matPrefix *ngIf="searchOptionsForm.controls['sortByField'].value != category.id" class="mat-prefix-sorter-icon"><mat-icon class="sorter-icon option-icon">{{category.iconValue}}</mat-icon></span>
+                  {{category.value}}
+                  <span matSuffix *ngIf="searchOptionsForm.controls['sortByField'].value != category.id" class="mat-suffix-sorter-icon"><mat-icon class="sorter-icon option-icon">{{category.iconValue}}</mat-icon></span>
+                </div>
+              </mat-option>
             </mat-select>
-            <!-- <span matSuffix class="mat-suffix-sorter-icon"><mat-icon class="sorter-icon">home</mat-icon></span> -->
+            <span matSuffix class="mat-suffix-sorter-icon">
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '0'">rule_folder</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '1'">savings</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '2'">flag</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '3'">mode_standby</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '4'">local_gas_station</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '5'">request_quote</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '6'">local_shipping</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '7'">payments</mat-icon>
+              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '8'">handyman</mat-icon>
+            </span>
 
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
@@ -31,9 +45,9 @@
             </span>
             <mat-label class="input-label">Sort From:</mat-label>
             <mat-select class="input-dropdown-text" formControlName="sortDirection" panelClass="dropdown-panel">
-              <mat-option class="input-dropdown-options" (click)="sortFromLowToHigh()" value="0">Low to
+              <mat-option class="input-dropdown-options" (click)="toggleSortDirection(0)" value="0">Low to
                 High</mat-option>
-              <mat-option class="input-dropdown-options" (click)="sortFromHighToLow()" value="1">High to
+              <mat-option class="input-dropdown-options" (click)="toggleSortDirection(1)" value="1">High to
                 Low</mat-option>
             </mat-select>
             <span matSuffix class="mat-suffix-sorter-icon">
