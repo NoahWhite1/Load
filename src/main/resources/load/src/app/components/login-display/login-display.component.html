@@ -1,26 +1,23 @@
-<div class="loginBackground" *ngIf = "loginDisplay">
-    <div class = "loginBody">
-
-        <button mat-flat-button class = "loginCloseButton" (click) = "displayLogin()">
-            <mat-icon>clear</mat-icon>
-        </button>
-        <span class = "loginText">Login</span>
-
-        <br>
-        <form>
-        <mat-form-field appearance="fill" class = "usernameInput">
-            <mat-label class = "fillerText">Username</mat-label>
-            <input matInput class = "inputText" [(ngModel)] = "username" [ngModelOptions]="{standalone: true}" autocomplete="on" required>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class = "passwordInput">
-            <mat-label class="fillerText">Password</mat-label>
-            <input matInput class = "inputText" type = "password" [(ngModel)] = "password" autocomplete="on" [ngModelOptions]="{standalone: true}" required>
-        </mat-form-field>
-    </form>
-        <br>
-        
-        <button mat-flat-button (click) = "Login()">Login</button>
-
+<div class="login-background" *ngIf = "loginDisplay">
+    <div class="login-body">
+        <button mat-flat-button class="login-exit-button" (click)="displayLogin()">Close</button>
+        <h2 class = "login-title">Login</h2>    
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="user-login-form">
+            <mat-form-field appearance="fill" class = "username-input-text" [color]="white">
+                <mat-label class = "filler-text" name = "username-text">Username</mat-label>
+                <input matInput class = "usernameInputText" type = "text" formControlName = "username" placeholder="username" autocomplete="on" required>
+                <button mat-icon-button matSuffix disabled>
+                    <mat-icon></mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class = "password-input-text" [color]="white">
+                <mat-label class="filler-text">Password</mat-label>
+                <input matInput class = "password-input-text" [type]="hide ? 'password' : 'text'" formControlName = "password" placeholder="password" autocomplete="on" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" >
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+            </mat-form-field>
+            <button mat-flat-button class="login-button" type="submit" [disabled]="!loginForm.valid">Login</button>
+        </form>
     </div>
 </div>

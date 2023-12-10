@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms//forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Person } from 'src/app/modules/person/person.module';
@@ -15,9 +15,11 @@ import { PeopleService } from 'src/app/services/people-service/people.service';
 export class LoginDisplayComponent implements OnInit {
   @Output ("toggleLoginIcon") toggleLoginIcon: EventEmitter<any> = new EventEmitter;
   loginDisplay:boolean = false;
-
-  username:string = "";
-  password:string = "";
+  hide:boolean = true;
+  loginForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl('')
+  })
   person:Person = new Person(0, " ", " ", " ", " ", 0, " ", [], " ");
   isLoggedIn:boolean = false;
 
@@ -27,12 +29,11 @@ export class LoginDisplayComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async Login(){
-    this.person = await this.peopleServ.loginCredentials(this.username,this.password);
+  async login(){
+    this.person = await this.peopleServ.loginCredentials(this.loginForm.get('username').value,this.loginForm.get('password').value);
     
     if(this.person != null){
       this.isLoggedIn = true;
-      console.log("person stored " + JSON.stringify(this.person.pId));
       localStorage.setItem("pId", this.person.pId.toString());
       this.toggleLoginIcon.emit();
 
@@ -47,7 +48,7 @@ export class LoginDisplayComponent implements OnInit {
       this.displayLogin();
     }
     else{
-      this.password = "";
+      this.loginForm.get('password').setValue("");
       this.IncorrectUsernameOrPasswordSnackBar();
     }
   }

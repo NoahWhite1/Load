@@ -1,71 +1,129 @@
-.loginBackground{
+.login-background{
     background-color: rgba(0, 0, 0, 0.342);
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     z-index: 10;
-    top: 0;
-    left:0;
 }
 
-.loginBody{
-    background-color: white;
-    width: 400px;
-    height: 400px;
-    margin-top: 250px;
-    margin-left: 750px;
-    border-radius: 5%;
-    border-style: solid;
-    border-color: #1a7dbe;
-    background-color: #0F4C75;
+.login-body{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    height: 50%;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-image: linear-gradient(180deg,#28a4b9,black);
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    margin: auto;
 }
 
-.usernameInput{
-    margin-left: 90px;
-    margin-top: 20px;
+.login-title{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 0;
+    width: 100%;
+    height: 10%;
+    font-size: 50px;
+    margin: auto;
 }
-
-.passwordInput{
-    margin-left: 90px;
-}
-
-.loginText{
-    display: block;
-    position: relative;
-    font-size: xx-large;
-    font-weight: bold;
-    margin-left: 150px;
-    margin-top: 60px;
+ 
+.filler-text{
     color: white;
 }
 
-button{
-    width: 150px;
-    margin-left: 110px;
-    height: 40px;
-    font-size: large;
-    background-color: #1a7dbe;
+.password-input-text{
+    display: flex;
+    height: 30%;
+    width: 300px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+}
+
+.username-input-text{
+    display: flex;
+    height: 30%;
+    width: 300px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+}
+
+input{
+    caret-color: white;
+}
+
+input::placeholder {
+    color: rgb(175, 175, 175);
+}
+
+
+.login-button{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    background-image: linear-gradient(280deg, #1f7483,rgb(11, 51, 63));
+    width: 60%;
+    height: 20%;
     color: white;
-}
-
-.mat-label{
-    color: white;;
-}
-
-.inputText{
-    color: white;
+    margin: auto;
+    border: 1px solid white;
 
 }
-
-.fillerText{
-    color: white;
+.user-login-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 40%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
 }
 
-.loginCloseButton{
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    margin-left: 320px;
-    margin-top: 20px;
+.login-exit-button{
+    display: flex;
+    width: 20%;
+    height: 10%;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
     background-color: rgb(175, 40, 40);
+    flex-wrap: wrap;
+    color: white;
+    border: 1px solid white;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-top:2.5%;
+    margin-right: 2.5%;
 }
+
+::ng-deep .mat-form-field-infix {
+    background-color: transparent !important;
+    border-radius: 0;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    border: 2px solid white !important;
+}
+
+

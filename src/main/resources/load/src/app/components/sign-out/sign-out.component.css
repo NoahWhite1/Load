@@ -1,49 +1,69 @@
-.signoutContainer{
-    background-color: white;
-    width: 400px;
-    height: 400px;
-    margin-top: 250px;
-    margin-left: 750px;
-    border-radius: 5%;
+.signout-container{
+    width: 40%;
+    height: 20%;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
     border-style: solid;
-    border-color: #1a7dbe;
-    background-color: #0F4C75;
+    border: 1px solid white;
+    background-image: linear-gradient(180deg,#28a4b9,black);
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.yesButton{
+.signout-choices{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 100%;
+    height: 30%;
+    flex-direction: row;
+}
+
+.yes-button{
     color: white;
     background-color: darkgreen;
-    width: 100px;
-    height: 100px;
-    margin-top: 50px;
-    margin-left: 60px;
+    display: flex;
+    width: 40%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
 }
 
-.noButton{
+.no-button{
     color: white;
     background-color: darkred;
-    width: 100px;
-    height: 100px;
-    margin-left: 75px;
+    width: 40%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
 }
 
-.signoutText{
-    display: block;
-    position: relative;
-    font-size: xx-large;
+.signout-text{
+    display: flex;
+    font-size: 40px;
     font-weight: bold;
-    margin-left: 150px;
-    margin-top: 60px;
+    justify-content: center;
+    align-content: center;
     color: white;
+    flex-direction: row;
+    height: 30%;
+    width: 100%;
+    margin-top: 2%;
 }
 
-.signoutDisplay{
+.signout-display{
     top: 0;
     left: 0;
     position: absolute;
     background: rgba(0, 0, 0, 0.39);
-    display:block;
+    display:flex;
     width: 100%;
     height: 100%;
-    z-index: 22000;
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
 }
