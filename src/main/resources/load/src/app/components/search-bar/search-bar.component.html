@@ -5,15 +5,7 @@
         <form [formGroup]="searchOptionsForm" class="search-options-form">
           <mat-form-field appearance="outline" class="field-input">
             <span matPrefix class="mat-prefix-sorter-icon">
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '0'">rule_folder</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '1'">savings</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '2'">flag</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '3'">mode_standby</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '4'">local_gas_station</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '5'">request_quote</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '6'">local_shipping</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '7'">payments</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '8'">handyman</mat-icon>
+              <mat-icon class="sorter-icon">{{searchByFieldOptionsArray[searchOptionsForm.controls['sortByField'].value].iconValue}}</mat-icon>
             </span>
             <mat-label class="input-label">Sort By:</mat-label>
             <mat-select class="input-dropdown-text" formControlName="sortByField">
@@ -26,17 +18,8 @@
               </mat-option>
             </mat-select>
             <span matSuffix class="mat-suffix-sorter-icon">
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '0'">rule_folder</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '1'">savings</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '2'">flag</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '3'">mode_standby</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '4'">local_gas_station</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '5'">request_quote</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '6'">local_shipping</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '7'">payments</mat-icon>
-              <mat-icon class="sorter-icon" *ngIf="searchOptionsForm.controls['sortByField'].value === '8'">handyman</mat-icon>
+              <mat-icon class="sorter-icon">{{searchByFieldOptionsArray[searchOptionsForm.controls['sortByField'].value].iconValue}}</mat-icon>
             </span>
-
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <span matPrefix class="mat-prefix-sorter-icon">
