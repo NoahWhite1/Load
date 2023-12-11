@@ -25,9 +25,11 @@
     </div>
     <div class="right-nav-side">
       <div class="login-content">
-        <button mat-icon-button class="main-menu-buttons">
-          <mat-icon class="mat-banner-icon" *ngIf="personSignedIn === null" (click)="loginDisplay()">login</mat-icon>
-          <mat-icon class="mat-banner-icon" *ngIf="personSignedIn != null && personSignedIn.pId > 0" (click)="signoutDisplay()">person</mat-icon>
+        <button mat-icon-button class="main-menu-buttons" *ngIf="personSignedIn === null" (click)="loginDisplay()">
+          <mat-icon class="mat-banner-icon">login</mat-icon>
+        </button>
+        <button mat-icon-button class="main-menu-buttons"  *ngIf="personSignedIn != null && personSignedIn.pId > 0" (click)="signoutDisplay()">
+          <mat-icon class="mat-banner-icon">person</mat-icon>
         </button>
       </div>
     </div>
