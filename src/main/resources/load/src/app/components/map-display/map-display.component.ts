@@ -1,12 +1,12 @@
 import { JsonpClientBackend } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import { config } from 'rxjs';
 import { FreightLoadService } from 'src/app/services/freight-load-service/freight-load.service';
-import { DirectionService } from 'src/app/services/direction-service/direction.service';
 import { Output, EventEmitter } from '@angular/core';
 import tt, { GeoJSONFeature, GeoJSONSource, GeoJSONSourceRaw, Marker, Point, Popup } from '@tomtom-international/web-sdk-maps';
-import tts, { Address, CalculateRouteResult, GeoJsonRouteProperties, Geometry, GeometrySearchResult, LatLng, LngLat, LngLatLike, LngLatObjectRepresentation, LngLatRequestParam, Poi, PoiSearchResponse, PoiSearchResult, PoiSearchSummary, Route, RouteSummary, SearchResult } from '@tomtom-international/web-sdk-services'
+import tts, { CalculateRouteResult, LatLng, LngLat, PoiSearchResponse, PoiSearchResult, Route, RouteSummary, SearchResult } from '@tomtom-international/web-sdk-services'
 import { GeoJsonObject, Position } from 'geojson';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-map-display',
@@ -76,7 +76,7 @@ export class MapDisplayComponent implements AfterViewInit {
     }
 
 
-  constructor(private freightServ: FreightLoadService, private cdr: ChangeDetectorRef, private directionServ: DirectionService) { }
+  constructor(private freightServ: FreightLoadService, private datePipe:DatePipe) { }
 
   ngAfterViewInit() {
   }
@@ -175,12 +175,18 @@ export class MapDisplayComponent implements AfterViewInit {
   }
 
   setPageData(routeSummary: RouteSummary) {
-
-    this.arrivalTimeChanged.emit(routeSummary.arrivalTime);
-    this.departureTimeChanged.emit(routeSummary.departureTime);
+    let modifiedArrivalTime:string = this.modifyDateString(routeSummary.arrivalTime);
+    let modifiedDepartureTime:string = this.modifyDateString(routeSummary.departureTime);
+    this.arrivalTimeChanged.emit(modifiedArrivalTime);
+    this.departureTimeChanged.emit(modifiedDepartureTime);
     this.lengthInMetersChanged.emit(routeSummary.lengthInMeters);
     this.travelTimeInSecondsChanged.emit(routeSummary.travelTimeInSeconds);
     this.trafficDelayInSecondsChanged.emit(routeSummary.trafficDelayInSeconds);
+  }
+
+  modifyDateString(inputDate:string):string{
+    let newDate:string = this.datePipe.transform(inputDate, 'MMM d, y, h:mm:ss a'	);
+    return newDate;
   }
 
   async findAddress(address: string): Promise<PoiSearchResult> {

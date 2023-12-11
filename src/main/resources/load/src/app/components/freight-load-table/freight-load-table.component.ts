@@ -1,8 +1,7 @@
-import { Component, OnInit,Input, ElementRef } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FreightLoad } from 'src/app/modules/freight-load/freight-load.module';
 import { Person } from 'src/app/modules/person/person.module';
-import { FreightLoadService } from 'src/app/services/freight-load-service/freight-load.service';
 import { PeopleService } from 'src/app/services/people-service/people.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class FreightLoadTableComponent implements OnInit {
   person:Person;
   freightColor:string = " ";
 
-  constructor(private personServ:PeopleService, private route:Router, private freightServ:FreightLoadService, private el:ElementRef) { }
+  constructor(private personServ:PeopleService, private route:Router) { }
 
   ngOnInit(): void {
     this.person = this.personServ.person;

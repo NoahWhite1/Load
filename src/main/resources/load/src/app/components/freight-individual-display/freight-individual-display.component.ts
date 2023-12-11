@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { FreightLoadService } from 'src/app/services/freight-load-service/freight-load.service';
 import { PeopleService } from 'src/app/services/people-service/people.service';
 import { MapDisplayComponent } from '../map-display/map-display.component';
@@ -17,8 +17,8 @@ export class FreightIndividualDisplayComponent implements AfterViewInit {
   freightLoad:FreightLoad = new FreightLoad(0, 0, "", "", 0, 0, 0, 0, 0, 0, this.person);
   @ViewChild(MapDisplayComponent)
   map_display:MapDisplayComponent;
-  @Input() arrivalTime:string = "";
-  @Input() departureTime:string = "";
+  @Input() arrivalTime:Date;
+  @Input() departureTime:Date;
   @Input() lengthInMeters:number = 0;
   @Input() trafficDelayInSeconds:number = 0;
   @Input() travelTimeInSeconds:number = 0;

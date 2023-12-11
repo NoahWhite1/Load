@@ -5,7 +5,7 @@ import { SearchBarComponent, SortingDetails } from '../search-bar/search-bar.com
 import { FreightLoad } from 'src/app/modules/freight-load/freight-load.module';
 import { Person } from 'src/app/modules/person/person.module';
 import { Input } from '@angular/core';
-import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { MatTabGroup } from '@angular/material/tabs';
 
 
 @Component({
@@ -35,7 +35,7 @@ export class FreightLoadsDisplayComponent implements AfterViewInit {
   @Input()
   selectedTab:number = 0;
 
-  constructor(private PersonServ:PeopleService, private freightServ:FreightLoadService, private renderer:Renderer2, private element:ElementRef) { }
+  constructor(private PersonServ:PeopleService, private freightServ:FreightLoadService, private renderer:Renderer2) { }
 
   ngAfterViewInit() {
     this.getPersonSignedIn();
