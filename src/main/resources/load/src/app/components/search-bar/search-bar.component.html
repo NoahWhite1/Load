@@ -77,44 +77,50 @@
         <form [formGroup]="loadForm" (ngSubmit)="newLoad(formDirective)" #formDirective="ngForm" class="load-form">
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Rate</mat-label>
-            <input matInput class="input-text" type="number" formControlName="rate" ng-blur='isInputValid(rate)'
+            <input matInput class="input-text" type="number" formControlName="rate"
               required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup Street Address</mat-label>
-            <input matInput class="input-text" formControlName="address1" required>
+            <input matInput class="input-text" type="text" formControlName="address1" (keyup)="updateStartAddress()" [matAutocomplete]="autoStartAddressGroup" autocomplete="doNotAutoComplete" required>
+            <mat-autocomplete #autoStartAddressGroup="matAutocomplete">
+              <mat-option class="search-dropdown-options" *ngFor="let address of startAddressList" (click)="selectStartAddress(address)" [value]="address">{{address.freeformAddress}}</mat-option>
+            </mat-autocomplete>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup City</mat-label>
-            <input matInput class="input-text" formControlName="city1" required>
+            <input matInput class="input-text" type="text" formControlName="city1" autocomplete="doNotAutoComplete" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup State</mat-label>
-            <input matInput class="input-text" formControlName="state1" required>
+            <input matInput class="input-text" type="text" formControlName="state1" autocomplete="doNotAutoComplete" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup Zipcode</mat-label>
-            <input matInput class="input-text" formControlName="zipcode1" required>
+            <input matInput class="input-text" type="text" formControlName="zipcode1" autocomplete="doNotAutoComplete" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery Street Address</mat-label>
-            <input matInput class="input-text" formControlName="address2" required>
+            <input matInput class="input-text" type="text" formControlName="address2"(keyup)="updateEndAddress()" [matAutocomplete]="autoEndAddressGroup" autocomplete="doNotAutoComplete" required>
+            <mat-autocomplete #autoEndAddressGroup="matAutocomplete">
+              <mat-option class="search-dropdown-options" *ngFor="let address of endAddressList" (click)="selectEndAddress(address)" [value]="address">{{address.freeformAddress}}</mat-option>
+            </mat-autocomplete>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery City</mat-label>
-            <input matInput class="input-text" formControlName="city2" required>
+            <input matInput class="input-text" type="text" formControlName="city2" autocomplete="doNotAutoComplete" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery State</mat-label>
-            <input matInput class="input-text" formControlName="state2" required>
+            <input matInput class="input-text" type="text" formControlName="state2" autocomplete="doNotAutoComplete" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery Zipcode</mat-label>
-            <input matInput class="input-text" formControlName="zipcode2" required>
+            <input matInput class="input-text" type="text" formControlName="zipcode2" autocomplete="doNotAutoComplete" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Gas Cost</mat-label>
-            <input matInput class="input-text" type="number" formControlName="gasCost" required>
+            <input matInput class="input-text" type="number" formControlName="gasCost"  required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Truck Driver Pay</mat-label>
@@ -134,7 +140,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline" type="number" class="field-input">
             <mat-label class="input-label">Load Status</mat-label>
-            <mat-select class="input-dropdown-text" formControlName="status" required>
+            <mat-select class="input-dropdown-text" type="number" formControlName="status" required>
               <mat-option class="input-dropdown-options" value="0">Posted</mat-option>
               <mat-option class="input-dropdown-options" value="1">In Progress</mat-option>
               <mat-option class="input-dropdown-options" value="2">Completed</mat-option>

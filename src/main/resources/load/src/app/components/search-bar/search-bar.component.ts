@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { Address, PoiSearchResponse, PoiSearchResult } from '@tomtom-international/web-sdk-services';
 import { FreightLoad } from 'src/app/modules/freight-load/freight-load.module';
 import { Person } from 'src/app/modules/person/person.module';
 import { FreightLoadService } from 'src/app/services/freight-load-service/freight-load.service';
@@ -19,6 +20,8 @@ export class SearchBarComponent implements OnInit {
   isSortedFromHighToLow:boolean = false;
   isLoadBeingGenerated:boolean = false;
   sortedCategoryDisplayText:string = "ID";
+  startAddressList:Set<tt.Address> = new Set<tt.Address>();
+  endAddressList:Set<tt.Address> = new Set<tt.Address>();
   loadForm = new FormGroup({
     address1: new FormControl(''),
     city1: new FormControl(''),
@@ -59,8 +62,56 @@ export class SearchBarComponent implements OnInit {
 
   constructor(private personServ:PeopleService, private freightServ:FreightLoadService) { }
 
-  ngOnInit(): void {
+  ngOnInit():void {
     this.getPersonSignedIn();
+  }
+
+  async updateSearchedAddresses(inputFormGroup:FormGroup,inputField:string):Promise<Set<tt.Address>>{
+    if(inputFormGroup.get(inputField).value===""){
+      return;
+    }
+    return await this.getPotentialSearchAddressesList(inputFormGroup.get(inputField).value);
+  }
+
+  async updateStartAddress()
+  {
+    this.startAddressList = await this.updateSearchedAddresses(this.loadForm, 'address1');
+  }
+
+  async updateEndAddress(){
+    this.endAddressList = await this.updateSearchedAddresses(this.loadForm, 'address2');
+  }
+
+  selectStartAddress(inputAddress:tt.Address){
+    this.organizeRouteDataToInputs(this.loadForm, inputAddress, 'address1', 'city1', 'state1', 'zipcode1');
+  }
+
+  selectEndAddress(inputAddress:tt.Address){
+    this.organizeRouteDataToInputs(this.loadForm, inputAddress, 'address2', 'city2', 'state2', 'zipcode2');
+  }
+
+  async getPotentialSearchAddressesList(input:string):Promise<Set<tt.Address>>{
+    let response:PoiSearchResponse = await this.freightServ.getSearchAddresses(input);
+    let results:PoiSearchResult[] = response.results;
+    let addressList:Set<tt.Address> = new Set<tt.Address>();
+    for(let result of results){
+      console.log(result.address)
+      addressList.add(result.address);
+    }
+    console.log("address list: " + JSON.stringify(addressList));
+    return addressList;
+  }
+
+  organizeRouteDataToInputs(formGroup:FormGroup, inputAddress:tt.Address, address:string, city:string, state:string, zipcode:string){
+    if(inputAddress.streetNumber !== undefined){
+      formGroup.get(address).setValue(inputAddress.streetNumber + " " + inputAddress.streetName);
+    }
+    else{
+      formGroup.get(address).setValue(inputAddress.streetName);
+    }
+    formGroup.get(city).setValue(inputAddress.municipality);
+    formGroup.get(state).setValue(inputAddress.countrySubdivision);
+    formGroup.get(zipcode).setValue(inputAddress.postalCode);
   }
 
   async newLoad(formDirective:FormGroupDirective){

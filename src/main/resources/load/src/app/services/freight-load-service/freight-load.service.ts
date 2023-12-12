@@ -17,20 +17,17 @@ export class FreightLoadService {
   
   constructor(private http:HttpClient) { }
 
-  // async loadRoute(lat1:number,long1:number,lat2:number,long2:number):Promise<CalculateRouteResult>{
-  //   const route:any = await this.http.get<CalculateRouteResult>(this.url + `/routing/1/calculateRoute/${lat1},${long1}:${lat2},${long2}/json?key=DItvwpSk1mhrPMbC0EpsQGtaqlaBKvkG`).toPromise();
-  //   return route;
-  // }
-
   async loadRoute(cord1:tt.LngLat, cord2:tt.LngLat):Promise<CalculateRouteResult>{
-    const route:any = await this.http.get<CalculateRouteResult>(this.url + `/routing/1/calculateRoute/${cord1.lat},${cord1.lng}:${cord2.lat},${cord2.lng}/json?key=DItvwpSk1mhrPMbC0EpsQGtaqlaBKvkG`).toPromise();
+    const route:any = await this.http.get<CalculateRouteResult>(this.url + `/routing/1/calculateRoute/${cord1.lat},${cord1.lng}:${cord2.lat},${cord2.lng}/json?avoid=unpavedRoads&traffic=true&key=DItvwpSk1mhrPMbC0EpsQGtaqlaBKvkG`).toPromise();
     return route;
   }
 
-  async getCordinates(address:string):Promise<PoiSearchResponse>{
+  async getSearchAddresses(address:string):Promise<PoiSearchResponse>{
     const cordinates = await this.http.get<PoiSearchResponse>(this.url + `/search/2/geocode/${address}.json?countrySet=US&key=DItvwpSk1mhrPMbC0EpsQGtaqlaBKvkG`).toPromise();
     return cordinates;
   }
+
+  async
 
   async createFreightLoad(newFreight:FreightLoad, personId:number):Promise<FreightLoad>{
     const freight:FreightLoad = await this.http.post<FreightLoad>(this.backendUrl + `/freightLoads/${personId}`,newFreight).toPromise();

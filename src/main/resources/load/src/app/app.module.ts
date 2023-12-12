@@ -34,6 +34,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DatePipe } from '@angular/common';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { DatePipe } from '@angular/common';
     MatTabsModule,
     MatSelectModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule
 
   ],
   providers: [PeopleService, FreightLoadService, DatePipe],

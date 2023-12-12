@@ -190,7 +190,7 @@ export class MapDisplayComponent implements AfterViewInit {
   }
 
   async findAddress(address: string): Promise<PoiSearchResult> {
-    let searchResponse: PoiSearchResponse = await this.freightServ.getCordinates(address);
+    let searchResponse: PoiSearchResponse = await this.freightServ.getSearchAddresses(address);
     let searchResults: PoiSearchResult[] = searchResponse.results;
     for (let i = 0; i < searchResults.length; i++) {
       if (address.includes(searchResults[i].address.countrySubdivision)) {

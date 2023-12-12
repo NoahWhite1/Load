@@ -25,6 +25,26 @@
     background-image: linear-gradient(270deg,#114f79,black) !important;
 }
 
+.search-dropdown-options{
+    color: white !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: fit-content;
+    text-wrap: wrap;
+    border: 1px solid white;
+    background-image: linear-gradient(180deg,#28a4b9,black);
+}
+
+.search-dropdown-options:hover{
+    color: black !important;
+}
+
+.mat-option-text{
+    display: flex;
+}
+
 input::placeholder {
     color: rgb(129, 129, 129);
 }
@@ -124,14 +144,30 @@ input::placeholder {
     color:yellow !important;
 }
 
+.load-form{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+}
+
+:host
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 2%;
+}
+
 .field-input{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     margin-left: 2.5%;
-    text-align: center;
     font-size: 15px;
+    width: 30%;
+    text-align: center;
 }
 .input-label{
     color: white;
@@ -145,6 +181,9 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-content: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
 }
 
 .input-dropdown-text{
@@ -234,16 +273,6 @@ input{
 :host
 ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #28a4b9 !important;
-}
-
-.load-form{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 100%;
 }
 
 .load-form-feedback{
