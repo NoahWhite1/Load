@@ -34,11 +34,17 @@
     height: fit-content;
     text-wrap: wrap;
     border: 1px solid white;
-    background-image: linear-gradient(180deg,#28a4b9,black);
+    background-image: linear-gradient(180deg,#28a4b9,black) !important;
+}
+
+.load-form-state-abbreviations{
+    background-color: linear-gradient(180deg,#28a4b9,black) !important;
 }
 
 .search-dropdown-options:hover{
+    background-image: linear-gradient(180deg,#28a4b9,white) !important;
     color: black !important;
+    border: 2.5px inset yellow;
 }
 
 .mat-option-text{

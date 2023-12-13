@@ -5,20 +5,27 @@
         <form [formGroup]="searchOptionsForm" class="search-options-form">
           <mat-form-field appearance="outline" class="field-input">
             <span matPrefix class="mat-prefix-sorter-icon">
-              <mat-icon class="sorter-icon">{{searchByFieldOptionsArray[searchOptionsForm.controls['sortByField'].value].iconValue}}</mat-icon>
+              <mat-icon
+                class="sorter-icon">{{searchByFieldOptionsArray[searchOptionsForm.controls['sortByField'].value].iconValue}}</mat-icon>
             </span>
             <mat-label class="input-label">Sort By:</mat-label>
             <mat-select class="input-dropdown-text" formControlName="sortByField">
-              <mat-option class="input-dropdown-options" *ngFor="let category of searchByFieldOptionsArray" (click)="sortByCategoryIdAndSortDirection(category.id, isSortedFromHighToLow)" value="{{category.id}}">
+              <mat-option class="input-dropdown-options" *ngFor="let category of searchByFieldOptionsArray"
+                (click)="sortByCategoryIdAndSortDirection(category.id, isSortedFromHighToLow)" value="{{category.id}}">
                 <div class="option-content">
-                  <span matPrefix *ngIf="searchOptionsForm.controls['sortByField'].value != category.id" class="mat-prefix-sorter-icon"><mat-icon class="sorter-icon option-icon">{{category.iconValue}}</mat-icon></span>
+                  <span matPrefix *ngIf="searchOptionsForm.controls['sortByField'].value != category.id"
+                    class="mat-prefix-sorter-icon"><mat-icon
+                      class="sorter-icon option-icon">{{category.iconValue}}</mat-icon></span>
                   {{category.value}}
-                  <span matSuffix *ngIf="searchOptionsForm.controls['sortByField'].value != category.id" class="mat-suffix-sorter-icon"><mat-icon class="sorter-icon option-icon">{{category.iconValue}}</mat-icon></span>
+                  <span matSuffix *ngIf="searchOptionsForm.controls['sortByField'].value != category.id"
+                    class="mat-suffix-sorter-icon"><mat-icon
+                      class="sorter-icon option-icon">{{category.iconValue}}</mat-icon></span>
                 </div>
               </mat-option>
             </mat-select>
             <span matSuffix class="mat-suffix-sorter-icon">
-              <mat-icon class="sorter-icon">{{searchByFieldOptionsArray[searchOptionsForm.controls['sortByField'].value].iconValue}}</mat-icon>
+              <mat-icon
+                class="sorter-icon">{{searchByFieldOptionsArray[searchOptionsForm.controls['sortByField'].value].iconValue}}</mat-icon>
             </span>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
@@ -53,7 +60,7 @@
             <span class="mat-prefix-sorter-icon">
               <mat-icon class="sorter-icon">create</mat-icon>
             </span>
-              <div class="load-creation-button-toggle-text">Open Load Creation</div>
+            <div class="load-creation-button-toggle-text">Open Load Creation</div>
             <span class="mat-suffix-sorter-icon">
               <mat-icon class="sorter-icon">create</mat-icon>
             </span>
@@ -61,12 +68,12 @@
           <button mat-flat-button class="load-creation-close-button" *ngIf="isLoadCreationToggled"
             (click)="closeLoadCreation()">
             <span class="mat-prefix-sorter-icon">
-            <mat-icon class="sorter-icon">close</mat-icon>
+              <mat-icon class="sorter-icon">close</mat-icon>
             </span>
             Close Load Creation
             <span class="mat-suffix-sorter-icon">
               <mat-icon class="sorter-icon">close</mat-icon>
-              </span>
+            </span>
           </button>
         </div>
       </div>
@@ -77,50 +84,71 @@
         <form [formGroup]="loadForm" (ngSubmit)="newLoad(formDirective)" #formDirective="ngForm" class="load-form">
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Rate</mat-label>
-            <input matInput class="input-text" type="number" formControlName="rate"
-              required>
+            <input matInput class="input-text" type="number" formControlName="rate" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup Street Address</mat-label>
-            <input matInput class="input-text" type="text" formControlName="address1" (keyup)="updateStartAddress()" [matAutocomplete]="autoStartAddressGroup" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="address1" (keyup)="updateStartAddress()"
+              [matAutocomplete]="autoStartAddressGroup" autocomplete="doNotAutoComplete" required>
             <mat-autocomplete #autoStartAddressGroup="matAutocomplete">
-              <mat-option class="search-dropdown-options" *ngFor="let address of startAddressList" (click)="selectStartAddress(address)" [value]="address">{{address.freeformAddress}}</mat-option>
+              <mat-option class="search-dropdown-options" *ngFor="let address of startAddressList"
+                (click)="selectStartAddress(address)" [value]="address">{{address.freeformAddress}}</mat-option>
             </mat-autocomplete>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup City</mat-label>
-            <input matInput class="input-text" type="text" formControlName="city1" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="city1" autocomplete="doNotAutoComplete"
+              required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup State</mat-label>
-            <input matInput class="input-text" type="text" formControlName="state1" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="state1" (keyup)="filterStartState()" autocomplete="doNotAutoComplete"
+              [matAutocomplete]="autoStartStateGroup" required>
+            <mat-autocomplete #autoStartStateGroup="matAutocomplete">
+              <mat-optgroup *ngFor="let stateGroup of currentStartStateGroups"[label]="stateGroup.letter" class="load-form-state-abbreviations">
+                <mat-option class="search-dropdown-options" *ngFor="let stateName of stateGroup.names"
+                  [value]="stateName">{{stateName}}</mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Pickup Zipcode</mat-label>
-            <input matInput class="input-text" type="text" formControlName="zipcode1" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="zipcode1" autocomplete="doNotAutoComplete"
+              required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery Street Address</mat-label>
-            <input matInput class="input-text" type="text" formControlName="address2"(keyup)="updateEndAddress()" [matAutocomplete]="autoEndAddressGroup" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="address2" (keyup)="updateEndAddress()"
+              [matAutocomplete]="autoEndAddressGroup" autocomplete="doNotAutoComplete" required>
             <mat-autocomplete #autoEndAddressGroup="matAutocomplete">
-              <mat-option class="search-dropdown-options" *ngFor="let address of endAddressList" (click)="selectEndAddress(address)" [value]="address">{{address.freeformAddress}}</mat-option>
+              <mat-option class="search-dropdown-options" *ngFor="let address of endAddressList"
+                (click)="selectEndAddress(address)" [value]="address">{{address.freeformAddress}}</mat-option>
             </mat-autocomplete>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery City</mat-label>
-            <input matInput class="input-text" type="text" formControlName="city2" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="city2" autocomplete="doNotAutoComplete"
+              required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery State</mat-label>
-            <input matInput class="input-text" type="text" formControlName="state2" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="state2" (keyup)="filterEndState()" autocomplete="doNotAutoComplete"
+              [matAutocomplete]="autoEndStateGroup" required>
+              <mat-autocomplete #autoEndStateGroup="matAutocomplete">
+                <mat-optgroup *ngFor="let stateGroup of currentEndStateGroups"[label]="stateGroup.letter" class="load-form-state-abbreviations">
+                  <mat-option class="search-dropdown-options" *ngFor="let stateName of stateGroup.names"
+                    [value]="stateName">{{stateName}}</mat-option>
+                </mat-optgroup>
+              </mat-autocomplete>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Delivery Zipcode</mat-label>
-            <input matInput class="input-text" type="text" formControlName="zipcode2" autocomplete="doNotAutoComplete" required>
+            <input matInput class="input-text" type="text" formControlName="zipcode2" autocomplete="doNotAutoComplete"
+              required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Gas Cost</mat-label>
-            <input matInput class="input-text" type="number" formControlName="gasCost"  required>
+            <input matInput class="input-text" type="number" formControlName="gasCost" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="field-input">
             <mat-label class="input-label">Truck Driver Pay</mat-label>
@@ -151,12 +179,12 @@
           <button mat-flat-button color="green" [disabled]="!loadForm.valid" type="submit" class="add-freight-button">
             <div *ngIf="loadForm.valid && !isLoadBeingGenerated" class="load-form-feedback">
               <span class="mat-prefix-sorter-icon">
-              <mat-icon class="sorter-icon">add_task</mat-icon>
-            </span>
+                <mat-icon class="sorter-icon">add_task</mat-icon>
+              </span>
               <div class="load-creation-button-toggle-text">Create Load</div>
               <span class="mat-suffix-sorter-icon">
-              <mat-icon class="sorter-icon">add_task</mat-icon>
-            </span>
+                <mat-icon class="sorter-icon">add_task</mat-icon>
+              </span>
             </div>
             <div *ngIf="!loadForm.valid && !isLoadBeingGenerated" class="load-form-feedback">
               <span class="mat-prefix-sorter-icon">

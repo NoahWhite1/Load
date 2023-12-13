@@ -109,7 +109,7 @@
 }
 
 .side-menu-buttons{
-  background-color: black;
+  background-image: linear-gradient(180deg,#28a4b9, black) !important;
   color: white;
   width: 100%;
   height: 20%;
@@ -125,8 +125,9 @@
 }
 
 .side-menu-buttons:hover{
-  background-color: white;
-  color: black;
+  background-image: linear-gradient(180deg,#28a4b9,white) !important;
+  color: black !important;
+  border: 2.5px inset yellow;
 }
 
 .menu-title{

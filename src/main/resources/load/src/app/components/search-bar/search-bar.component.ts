@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, ValidatorFn, Validators } from '@angular/forms';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { Address, PoiSearchResponse, PoiSearchResult } from '@tomtom-international/web-sdk-services';
 import { FreightLoad } from 'src/app/modules/freight-load/freight-load.module';
@@ -22,15 +22,16 @@ export class SearchBarComponent implements OnInit {
   sortedCategoryDisplayText:string = "ID";
   startAddressList:Set<tt.Address> = new Set<tt.Address>();
   endAddressList:Set<tt.Address> = new Set<tt.Address>();
+  zipcodeValidator:ValidatorFn[] = [Validators.required, Validators.pattern('[0-9]{5}')];
   loadForm = new FormGroup({
     address1: new FormControl(''),
     city1: new FormControl(''),
     state1: new FormControl(''),
-    zipcode1: new FormControl(''),
+    zipcode1: new FormControl('', this.zipcodeValidator),
     address2: new FormControl(''),
     city2: new FormControl(''),
     state2: new FormControl(''),
-    zipcode2: new FormControl(''),
+    zipcode2: new FormControl('', this.zipcodeValidator),
     loadCost: new FormControl(''),
     gasCost: new FormControl(''),
     insuranceCost: new FormControl(''),
@@ -39,6 +40,126 @@ export class SearchBarComponent implements OnInit {
     rate: new FormControl(''),
     status: new FormControl('')
   });
+
+  stateGroups:StateGroup [] = [
+    {
+      letter:'A',
+      names:[
+        'Alabama', 'Alaska', 'Arizona', 'Arkansas'
+      ]
+    },
+    {
+      letter:'C',
+      names:[
+        'California', 'Colorado', 'Connecticut'
+      ]
+    },
+    {
+      letter:'D',
+      names:[
+        'Delaware'
+      ]
+    },
+    {
+      letter:'F',
+      names:[
+        'Florida'
+      ]
+    },
+    {
+      letter:'G',
+      names:[
+        'Georgia'
+      ]
+    },
+    {
+      letter:'H',
+      names:[
+        'Hawaii'
+      ]
+    },
+    {
+      letter:'I',
+      names:[
+        'Idaho', 'Illinois', 'Indiana', 'Iowa'
+      ]
+    },
+    {
+      letter:'K',
+      names:[
+        'Kansas', 'Kentucky'
+      ]
+    },
+    {
+      letter:'L',
+      names:[
+        'Louisiana'
+      ]
+    },
+    {
+      letter:'M',
+      names:[
+        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri','Montana'
+      ]
+    },
+    {
+      letter:'N',
+      names:[
+        'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota'
+      ]
+    },
+    {
+      letter:'O',
+      names:[
+        'Ohio', 'Oklahoma', 'Oregon'
+      ]
+    },
+    {
+      letter:'P',
+      names:[
+        'Pennsylvania'
+      ]
+    },
+    {
+      letter:'R',
+      names:[
+        'Rhode Island'
+      ]
+    },
+    {
+      letter:'S',
+      names:[
+        'South Carolina', 'South Dakota'
+      ]
+    },
+    {
+      letter:'T',
+      names:[
+        'Tennessee', 'Texas'
+      ]
+    },
+    {
+      letter:'U',
+      names:[
+        'Utah'
+      ]
+    },
+    {
+      letter:'V',
+      names:[
+        'Vermont', 'Virginia'
+      ]
+    },
+    {
+      letter:'W',
+      names:[
+        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+      ]
+    }
+  ];
+  currentStartStateGroups:StateGroup[] = [];
+  currentEndStateGroups:StateGroup[] = [];
+
   readonly searchByFieldOptionsArray:Array<{id:number, value:string, iconValue:string}> = [
     {id:0, value:'I.D.', iconValue:"rule_folder"},
     {id:1, value:"Rate", iconValue:"savings"},
@@ -114,6 +235,27 @@ export class SearchBarComponent implements OnInit {
     formGroup.get(zipcode).setValue(inputAddress.postalCode);
   }
 
+  filterGroup(value: string):StateGroup[]{
+    console.log("sorting: " + JSON.stringify(value));
+    let stateGroup:StateGroup[] = [];
+    if (value) {
+      stateGroup = this.stateGroups.map(group=>({letter:group.letter, names:filter(group.names, value)}))
+      .filter(group => group.names.length > 0);
+      return stateGroup;
+    }
+    console.log(stateGroup);
+  }
+
+  filterStartState(){
+    let value:string = this.loadForm.get('state1').value;
+    this.currentStartStateGroups = this.filterGroup(value);
+  }
+
+  filterEndState(){
+    let value:string = this.loadForm.get('state2').value;
+    this.currentEndStateGroups = this.filterGroup(value);
+  }
+
   async newLoad(formDirective:FormGroupDirective){
     this.isLoadBeingGenerated = true;
     console.log("executing new load function...");
@@ -187,3 +329,15 @@ export interface SortingDetails{
   category:number;
   isSortingHighToLow:boolean;
 }
+
+export interface StateGroup{
+  letter:string;
+  names:string[];
+}
+
+
+export const filter = (opt: string[], value: string): string[] => {
+  const filterValue = value.toLowerCase();
+
+  return opt.filter(item => item.toLowerCase().includes(filterValue));
+};
