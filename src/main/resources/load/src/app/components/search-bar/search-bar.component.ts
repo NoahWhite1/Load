@@ -15,6 +15,154 @@ import { PeopleService } from 'src/app/services/people-service/people.service';
 
 export class SearchBarComponent implements OnInit {
 
+  stateGroups:StateGroup [] = [
+    {
+      letter:'A',
+      states:[
+        {name:'Alabama', abbreviation:'AL'},
+        {name: 'Alaska', abbreviation:'AK'},
+        {name:'Arizona', abbreviation:'AZ'},
+        {name: 'Arkansas', abbreviation:'AR'}
+      ]
+    },
+    {
+      letter:'C',
+      states:[
+        {name:'California', abbreviation:'CA'},
+        {name:'Colorado', abbreviation:'CO'},
+        {name:'Connecticut', abbreviation:'CT'}
+      ]
+    },
+    {
+      letter:'D',
+      states:[
+        {name:'Delaware', abbreviation: 'DE'}
+      ]
+    },
+    {
+      letter:'F',
+      states:[
+        {name:'Florida', abbreviation:'FL'}
+      ]
+    },
+    {
+      letter:'G',
+      states:[
+        {name:'Georgia', abbreviation:'GA'}
+      ]
+    },
+    {
+      letter:'H',
+      states:[
+        {name: 'Hawaii', abbreviation: 'HI'}
+      ]
+    },
+    {
+      letter:'I',
+      states:[
+        {name:'Idaho', abbreviation:'ID'},
+        {name:'Illinois', abbreviation:'IL'},
+        {name:'Indiana', abbreviation:'IN'},
+        {name:'Iowa', abbreviation:'IA'}
+      ]
+    },
+    {
+      letter:'K',
+      states:[
+        {name:'Kansas', abbreviation:'KS'},
+        {name:'Kentucky', abbreviation:'KY'}
+      ]
+    },
+    {
+      letter:'L',
+      states:[
+        {name:'Louisiana', abbreviation:'LA'}
+      ]
+    },
+    {
+      letter:'M',
+      states:[
+        {name:'Maine', abbreviation:'ME'},
+        {name:'Maryland', abbreviation:'MD'},
+        {name:'Massachusetts', abbreviation:'MA'},
+        {name:'Michigan', abbreviation:'MI'},
+        {name:'Minnesota', abbreviation:'MN'},
+        {name:'Mississippi', abbreviation:'MS'},
+        {name:'Missouri', abbreviation:'MO'},
+        {name:'Montana', abbreviation:'MT'}
+      ]
+    },
+    {
+      letter:'N',
+      states:[
+        {name:'Nebraska', abbreviation:'NE'},
+        {name:'Nevada', abbreviation:'NV'},
+        {name:'New Hampshire', abbreviation:'NH'},
+        {name:'New Jersey', abbreviation:'NJ'},
+        {name:'New Mexico', abbreviation:'NM'},
+        {name:'New York', abbreviation:'NY'},
+        {name:'North Carolina', abbreviation:'NC'},
+        {name:'North Dakota', abbreviation:'ND'},
+      ]
+    },
+    {
+      letter:'O',
+      states:[
+        {name:'Ohio', abbreviation:'OH'},
+        {name:'Oklahoma', abbreviation:'OK'},
+        {name:'Oregon', abbreviation:'OR'}
+      ]
+    },
+    {
+      letter:'P',
+      states:[
+        {name:'Pennsylvania', abbreviation:'PA'}
+      ]
+    },
+    {
+      letter:'R',
+      states:[
+        {name:'Rhode Island', abbreviation:'RI'}
+      ]
+    },
+    {
+      letter:'S',
+      states:[
+        {name:'South Carolina', abbreviation:'SC'},
+        {name:'South Dakota', abbreviation:'SD'}
+      ]
+    },
+    {
+      letter:'T',
+      states:[
+        {name:'Tennessee', abbreviation:'TN'},
+        {name:'Texas', abbreviation:'TX'}
+      ]
+    },
+    {
+      letter:'U',
+      states:[
+        {name:'Utah', abbreviation:'UT'}
+      ]
+    },
+    {
+      letter:'V',
+      states:[
+        {name:'Vermont', abbreviation:'VT'},
+        {name:'Virginia', abbreviation:'VA'}
+      ]
+    },
+    {
+      letter:'W',
+      states:[
+        {name:'Washington', abbreviation:'WA'},
+        {name:'West Virginia', abbreviation:'WV'},
+        {name:'Wisconsin', abbreviation:'WI'},
+        {name:'Wyoming', abbreviation:'WY'}
+      ]
+    }
+  ];
+
   @Output("searchFor") searchFor:EventEmitter<SortingDetails> = new EventEmitter<SortingDetails>();
   searchBar:string = "";
   isSortedFromHighToLow:boolean = false;
@@ -23,14 +171,16 @@ export class SearchBarComponent implements OnInit {
   startAddressList:Set<tt.Address> = new Set<tt.Address>();
   endAddressList:Set<tt.Address> = new Set<tt.Address>();
   zipcodeValidator:ValidatorFn[] = [Validators.required, Validators.pattern('[0-9]{5}')];
+  validStatesPattern:string = this.initializeStatesValidator();
+  stateValidator:ValidatorFn[]=[Validators.required, Validators.minLength(2), Validators.maxLength(2), Validators.pattern("^("+ this.validStatesPattern + ")$")]
   loadForm = new FormGroup({
     address1: new FormControl(''),
     city1: new FormControl(''),
-    state1: new FormControl(''),
+    state1: new FormControl('', this.stateValidator),
     zipcode1: new FormControl('', this.zipcodeValidator),
     address2: new FormControl(''),
     city2: new FormControl(''),
-    state2: new FormControl(''),
+    state2: new FormControl('', this.stateValidator),
     zipcode2: new FormControl('', this.zipcodeValidator),
     loadCost: new FormControl(''),
     gasCost: new FormControl(''),
@@ -41,124 +191,11 @@ export class SearchBarComponent implements OnInit {
     status: new FormControl('')
   });
 
-  stateGroups:StateGroup [] = [
-    {
-      letter:'A',
-      names:[
-        'Alabama', 'Alaska', 'Arizona', 'Arkansas'
-      ]
-    },
-    {
-      letter:'C',
-      names:[
-        'California', 'Colorado', 'Connecticut'
-      ]
-    },
-    {
-      letter:'D',
-      names:[
-        'Delaware'
-      ]
-    },
-    {
-      letter:'F',
-      names:[
-        'Florida'
-      ]
-    },
-    {
-      letter:'G',
-      names:[
-        'Georgia'
-      ]
-    },
-    {
-      letter:'H',
-      names:[
-        'Hawaii'
-      ]
-    },
-    {
-      letter:'I',
-      names:[
-        'Idaho', 'Illinois', 'Indiana', 'Iowa'
-      ]
-    },
-    {
-      letter:'K',
-      names:[
-        'Kansas', 'Kentucky'
-      ]
-    },
-    {
-      letter:'L',
-      names:[
-        'Louisiana'
-      ]
-    },
-    {
-      letter:'M',
-      names:[
-        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri','Montana'
-      ]
-    },
-    {
-      letter:'N',
-      names:[
-        'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota'
-      ]
-    },
-    {
-      letter:'O',
-      names:[
-        'Ohio', 'Oklahoma', 'Oregon'
-      ]
-    },
-    {
-      letter:'P',
-      names:[
-        'Pennsylvania'
-      ]
-    },
-    {
-      letter:'R',
-      names:[
-        'Rhode Island'
-      ]
-    },
-    {
-      letter:'S',
-      names:[
-        'South Carolina', 'South Dakota'
-      ]
-    },
-    {
-      letter:'T',
-      names:[
-        'Tennessee', 'Texas'
-      ]
-    },
-    {
-      letter:'U',
-      names:[
-        'Utah'
-      ]
-    },
-    {
-      letter:'V',
-      names:[
-        'Vermont', 'Virginia'
-      ]
-    },
-    {
-      letter:'W',
-      names:[
-        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-      ]
-    }
-  ];
+
   currentStartStateGroups:StateGroup[] = [];
   currentEndStateGroups:StateGroup[] = [];
+  currentStartCityGroups:Set<string> = new Set<string>();
+  currentEndCityGroups:Set<string> = new Set<string>();
 
   readonly searchByFieldOptionsArray:Array<{id:number, value:string, iconValue:string}> = [
     {id:0, value:'I.D.', iconValue:"rule_folder"},
@@ -185,6 +222,16 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit():void {
     this.getPersonSignedIn();
+  }
+
+  initializeStatesValidator():string{
+    let result:string = "";
+    this.stateGroups.forEach((stateGroup:StateGroup)=>{
+      stateGroup.states.forEach((state) => {
+        return result +="|" + state.abbreviation;
+      });
+    });
+    return result;
   }
 
   async updateSearchedAddresses(inputFormGroup:FormGroup,inputField:string):Promise<Set<tt.Address>>{
@@ -216,14 +263,15 @@ export class SearchBarComponent implements OnInit {
     let results:PoiSearchResult[] = response.results;
     let addressList:Set<tt.Address> = new Set<tt.Address>();
     for(let result of results){
-      console.log(result.address)
       addressList.add(result.address);
     }
-    console.log("address list: " + JSON.stringify(addressList));
     return addressList;
   }
 
   organizeRouteDataToInputs(formGroup:FormGroup, inputAddress:tt.Address, address:string, city:string, state:string, zipcode:string){
+    if(inputAddress === undefined){
+      return;
+    }
     if(inputAddress.streetNumber !== undefined){
       formGroup.get(address).setValue(inputAddress.streetNumber + " " + inputAddress.streetName);
     }
@@ -235,25 +283,53 @@ export class SearchBarComponent implements OnInit {
     formGroup.get(zipcode).setValue(inputAddress.postalCode);
   }
 
-  filterGroup(value: string):StateGroup[]{
-    console.log("sorting: " + JSON.stringify(value));
+  filterStates(value: string):StateGroup[]{
     let stateGroup:StateGroup[] = [];
     if (value) {
-      stateGroup = this.stateGroups.map(group=>({letter:group.letter, names:filter(group.names, value)}))
-      .filter(group => group.names.length > 0);
+      stateGroup = this.stateGroups.map(group=>({letter:group.letter, states:filterState(group.states, value)}))
+      .filter(group => group.states.length > 0);
       return stateGroup;
     }
     console.log(stateGroup);
   }
 
+  filterCities(value:string, addressList:Set<tt.Address>):string[]{
+  if(value === undefined || value===' '){
+    return;
+  }
+  let valueArray:string[] = [];
+  for(let address of addressList){
+    valueArray.push(address.municipality);
+  }
+  let newValueArray:string[] = [];
+  newValueArray = filterText(valueArray, value);
+  return newValueArray;
+  // if(value){
+  //   valueArray = this.startAddressList.forEach((address:tt.Address)=>{return filterCity(address.municipality, value)})
+  //   }
+  //   return valueArray;
+  }
+
+  filterStartCity(){
+    let value:string = this.loadForm.get('city1').value;
+    this.currentStartCityGroups = new Set<string>();
+    this.filterCities(value, this.startAddressList).map((value:string)=>{this.currentStartCityGroups.add(value)});
+  }
+
+  filterEndCity(){
+    let value:string = this.loadForm.get('city2').value;
+    this.currentEndCityGroups = new Set<string>();
+    this.filterCities(value, this.endAddressList).map((value:string)=>{this.currentEndCityGroups.add(value)})
+  }
+
   filterStartState(){
     let value:string = this.loadForm.get('state1').value;
-    this.currentStartStateGroups = this.filterGroup(value);
+    this.currentStartStateGroups = this.filterStates(value);
   }
 
   filterEndState(){
     let value:string = this.loadForm.get('state2').value;
-    this.currentEndStateGroups = this.filterGroup(value);
+    this.currentEndStateGroups = this.filterStates(value);
   }
 
   async newLoad(formDirective:FormGroupDirective){
@@ -332,12 +408,21 @@ export interface SortingDetails{
 
 export interface StateGroup{
   letter:string;
-  names:string[];
+  states:State[];
 }
 
+export interface State{
+  name:string;
+  abbreviation:string;
+}
 
-export const filter = (opt: string[], value: string): string[] => {
-  const filterValue = value.toLowerCase();
+export const filterText = (opt: string[], value: string): string[] =>{
+  let filterValue:string = value.toLowerCase();
+  opt = opt.filter(value=>value);
+  return opt.filter((item:string)=> item.toLowerCase().includes(filterValue));
+};
 
-  return opt.filter(item => item.toLowerCase().includes(filterValue));
+export const filterState = (opt: State[], value: string): State[] => {
+  let filterValue:string = value.toLowerCase();
+  return opt.filter((item:State) => item.name.toLowerCase().includes(filterValue));
 };
