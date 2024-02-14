@@ -44,8 +44,8 @@ export class FreightIndividualDisplayComponent implements AfterViewInit {
   formatPhoneNumber(){
     this.phone = this.freightLoad.freightBroker.phone;
 
-    this.phone = this.phone[0] + this.phone[1] + this.phone[2] + "-" + this.phone[3] + this.phone[4] + this.phone[5] + this.phone[6] +
-    "-" + this.phone[7] + this.phone[8] + this.phone[9]; 
+    this.phone = this.phone[0] + this.phone[1] + this.phone[2] + "-" + this.phone[3] + this.phone[4] + this.phone[5] +
+    "-" + this.phone[6] + this.phone[7] + this.phone[8] + this.phone[9]; 
   }
 
   returnToLoadBoard(){

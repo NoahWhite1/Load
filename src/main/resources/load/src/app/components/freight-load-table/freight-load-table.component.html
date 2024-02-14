@@ -1,11 +1,11 @@
 <mat-card class="freight-display" (click)="selectFreight()" [ngStyle]="{'background-image': freightColor}">
     <mat-card-title class="freight-title-text">
         <div class="freight-locations">
-            <b>Pickup:</b>
+            <b class="freight-location">Pickup:</b>
             {{freightLoad.startAddress}}
         </div>
         <div class="freight-locations">
-            <b>Deliver:</b>
+            <b class="freight-location">Deliver:</b>
             {{freightLoad.endAddress}}
         </div>
     </mat-card-title>

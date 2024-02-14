@@ -19,6 +19,9 @@
     box-shadow: 5px 5px white;
 }
 
+.freight-location{
+    line-height: normal;
+}
 
 .freight-content{
     display: flex;

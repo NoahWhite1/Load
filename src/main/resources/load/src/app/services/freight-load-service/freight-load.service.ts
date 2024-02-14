@@ -27,8 +27,6 @@ export class FreightLoadService {
     return cordinates;
   }
 
-  async
-
   async createFreightLoad(newFreight:FreightLoad, personId:number):Promise<FreightLoad>{
     const freight:FreightLoad = await this.http.post<FreightLoad>(this.backendUrl + `/freightLoads/${personId}`,newFreight).toPromise();
     return freight;
